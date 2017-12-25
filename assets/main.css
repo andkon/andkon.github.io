@@ -1,4 +1,4 @@
-/* Base styles */
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500|Fira+Mono:400');
 
 a strong {
   color: inherit;
@@ -30,16 +30,17 @@ footer {
 
 /* 01 Centering */
 
-header,
 main {
-  margin: 0 auto;
+  margin: 2em auto;
   max-width: 50em;
+  background-color: white;
+  outline: 1px solid white;
+  outline-offset: 5px;
 }
-
 /* 02 Font family */
 
 body {
-  font-family: "Helvetica", "Arial", sans-serif;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 /* 03 Spacing */
@@ -50,8 +51,8 @@ body {
 }
 
 h2 {
-  margin-top: 1em;
-  padding-top: 1em;
+  margin-top: 0.25em;
+  padding-top: 0.75em;
 }
 
 /* 04 Color and contrast */
@@ -61,9 +62,8 @@ body {
 }
 
 h1,
-h2,
-strong {
-  color: #333;
+h2 {
+  color: #ff8f13;
 }
 
 /* 05 Balance */
@@ -85,31 +85,31 @@ pre {
 /* 06 Primary color */
 
 a {
-  color: #e81c4f;
+  color: #da411c;
 }
 
 /* 07 Secondary colors */
 
 body {
-  background: white;
+  background: #ffab68;
   color: #566b78;
 }
 
 code,
 pre {
-  background: #f5f7f9;
-  border-bottom: 1px solid #d8dee9;
-  color: #a7adba;
+  background: #ffdbbe;
+  /*border-bottom: 1px solid #b103b1;*/
+  color: #5f5f5f;
   -moz-font-smoothing: grayscale;
   -webkit-font-smoothing: initial;
 }
 
 pre {
-  border-left: 2px solid #69c;
+  border-left: 2px solid #ffa500;
 }
 
 .selector {
-  color: #ec5f67;
+  color: #940911;
 }
 
 .keyword {
@@ -117,25 +117,25 @@ pre {
 }
 
 .unit {
-  color: #fac863;
+  color: #5f5f5f;
 }
 
 .attribute {
-  color: #5fb3b3;
+  color: #ff5600;
 }
 
 .number {
-  color: #f99157;
+  color: #c35903;
 }
 
 .string {
-  color: #c594c5;
+  color: #b103b1;
 }
 
-/* 08 Custom font */
+/* 08 Cuatom font */
 
 body {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   -moz-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
@@ -154,18 +154,19 @@ body {
 }
 
 main {
-  padding: 4em 1em;
+  padding: 1em 3em;
 }
 
 header {
-  background-color: #263d36;
+  background-color: #FFFFFF;
   background-image: url("header.jpg");
-  background-position: center top;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-clip: content-box;
   line-height: 1.2;
   max-width: none;
-  padding: 10vw 2em;
+  padding: 1vw 2em;
   text-align: center;
 }
 
@@ -177,14 +178,13 @@ header {
 }
 
 header h1 {
+/*  font-family: "Menlo", "Fira Mono", monospace;*/
   color: white;
   font-size: 2.5em;
   font-weight: 300;
 }
 
 header a {
-  border: 1px solid #e81c4f;
-  border-radius: 290486px;
   color: white;
   font-size: 0.6em;
   letter-spacing: 0.2em;

@@ -30,12 +30,13 @@ footer {
 
 /* 01 Centering */
 
-main {
+div .home, .post-content {
   margin: 2em auto;
   max-width: 50em;
   background-color: white;
   outline: 1px solid white;
   outline-offset: 5px;
+  padding: 1em 3em;
 }
 /* 02 Font family */
 
@@ -153,13 +154,9 @@ body {
   padding: 0;
 }
 
-main {
-  padding: 1em 3em;
-}
-
 header {
   background-color: #FFFFFF;
-  background-image: url("header.jpg");
+  background-image: url("images/header.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;

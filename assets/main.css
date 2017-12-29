@@ -162,100 +162,9 @@ body {
 
 /* Header stuff */
 
-/*background: #FE987B;
-background: #FDA679;
-background: #FEB57A;
-background: #FEC57A;
-background: #FDD378;*/
-
-
-header.home-header {
-  font-family: "Menlo", "Fira Mono", monospace;
-  background-image: -webkit-gradient(linear,
-    left top,
-    right top,
-    color-stop(0, #FE987B),
-    color-stop(20%, #FE987B),
-    color-stop(20%, #FDA679),
-    color-stop(40%, #FDA679),
-    color-stop(40%, #FEB57A),
-    color-stop(60%, #FEB57A),
-    color-stop(60%, #FEC57A),
-    color-stop(80%, #FEC57A),
-    color-stop(80%, #FDD378),
-    color-stop(100%, #FDD378)
-  );
-  background-image: -webkit-linear-gradient(
-    left,
-    #FE987B,
-    #FE987B 20%,
-    #FDA679 20%,
-    #FDA679 40%,
-    #FEB57A 40%,
-    #FEB57A 60%,
-    #FEC57A 60%,
-    #FEC57A 80%,
-    #FDD378 80%,
-    #FDD378 100%
-  );
-  background-image: -moz-linear-gradient(
-    left,
-    #FE987B,
-    #FE987B 20%,
-    #FDA679 20%,
-    #FDA679 40%,
-    #FEB57A 40%,
-    #FEB57A 60%,
-    #FEC57A 60%,
-    #FEC57A 80%,
-    #FDD378 80%,
-    #FDD378 100%
-  );
-  background-image: -ms-linear-gradient(
-    left,
-    #FE987B,
-    #FE987B 20%,
-    #FDA679 20%,
-    #FDA679 40%,
-    #FEB57A 40%,
-    #FEB57A 60%,
-    #FEC57A 60%,
-    #FEC57A 80%,
-    #FDD378 80%,
-    #FDD378 100%
-  );
-  background-image: -o-linear-gradient(
-    left,
-    #FE987B,
-    #FE987B 20%,
-    #FDA679 20%,
-    #FDA679 40%,
-    #FEB57A 40%,
-    #FEB57A 60%,
-    #FEC57A 60%,
-    #FEC57A 80%,
-    #FDD378 80%,
-    #FDD378 100%
-  );
-  line-height: 1.2;
-  max-height: 8em;
-  padding: 1vw 2em;
-  text-align: center;
-}
-
-header.post-header {
-
-}
-
-#logo {
-  display: inline-block;
-  height: 120px;
-  vertical-align: top;
-  width: 120px;
-}
 
 header h1 {
-/*  font-family: "Menlo", "Fira Mono", monospace;*/
+  font-family: "Menlo", "Fira Mono", monospace;
   color: white;
   font-size: 2.5em;
   font-weight: 300;
@@ -276,6 +185,71 @@ header a:hover {
   background: #e81c4f;
   color: white;
 }
+
+
+header.home-header-wrapper {
+  font-family: "Menlo", "Fira Mono", monospace;
+  line-height: 1.2;
+  height: 8em;
+  padding: 1vw;
+  text-align: center;
+  position: relative;
+  top: 0px;
+}
+
+.home-header-wrapper > div {
+  display: inline-block;
+  width: 20%;
+  height: 8em;
+  padding: 0;
+  position: absolute;
+  top: 0px;
+}
+
+.home-header:nth-child(1) {
+  background: #FE987B;
+  left: 0%;
+}
+.home-header:nth-child(2) {
+  background: #FDA679;
+  left: 20%;
+}
+.home-header:nth-child(3) {
+  background: #FEB57A;
+  left: 40%;
+}
+.home-header:nth-child(4) {
+  background: #FEC57A;
+  left: 60%;
+}
+.home-header:nth-child(5) {
+  background: #FDD378;
+  left: 80%;
+}
+
+.home-header a {
+  margin: auto;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+/*.home-header-wrapper a {
+  position: relative;
+}*/
+
+header.post-header {
+
+}
+
+#logo {
+  display: inline-block;
+  height: 120px;
+  vertical-align: top;
+  width: 120px;
+}
+
 
 /* Classes */
 

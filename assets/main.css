@@ -300,6 +300,17 @@ header.post-header {
   padding: 10px 0px;
 }
 
+a.read-more {
+
+}
+
+a.read-more:before {
+  content: "🍑";
+  display: inline-block;
+  text-decoration: none;
+  padding-right: 5px;
+}
+
 .animate {
   animation-duration: 1s;
   animation-name: blink;

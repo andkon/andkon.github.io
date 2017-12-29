@@ -29,41 +29,18 @@ footer {
 }
 
 
-
-/* 01 Centering */
-
-div .home, .post-content {
-  margin: 2em auto;
-  max-width: 50em;
-  background-color: white;
-  outline: 1px solid white;
-  outline-offset: 5px;
-  padding: 1em 3em;
-}
-
-
 /* 02 Font family */
 
 body {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-
-/* 03 Spacing */
-
-body {
   line-height: 1.5;
   padding: 4em 1em;
+  color: #555;
 }
 
 h2 {
   margin-top: 0.25em;
   padding-top: 0.75em;
-}
-
-/* 04 Color and contrast */
-
-body {
-  color: #555;
 }
 
 h1,
@@ -234,7 +211,6 @@ header.home-header-wrapper {
   left: 0px;
   right: 0px;
 }
-
 /*.home-header-wrapper a {
   position: relative;
 }*/
@@ -252,6 +228,37 @@ header.post-header {
 
 
 /* Classes */
+
+/* 01 Centering */
+
+.post {
+  margin: 2em auto;
+  max-width: 50em;
+  background-color: white;
+  padding: 1em 3em;
+  position: relative;
+  width: 100%;
+}
+
+.post:before {
+  width: 100%;
+  /*background: white;*/
+  height: 100%;
+  position: absolute;
+  top: -.5rem;
+  left: -.5rem;
+  outline: 1px solid white;
+  content: "";
+  z-index: -1;
+  transition: all 0.2s ease;
+}
+
+
+
+.post:hover:before {
+  top:0px;
+  left: 0px;
+}
 
 .animate {
   animation-duration: 1s;

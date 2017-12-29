@@ -229,6 +229,10 @@ header.post-header {
 
 /* Classes */
 
+.page-content {
+  padding: 0 2em;
+}
+
 .post {
   margin: 2em auto;
   max-width: 50em;

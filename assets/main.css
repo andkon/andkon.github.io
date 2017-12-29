@@ -229,8 +229,6 @@ header.post-header {
 
 /* Classes */
 
-/* 01 Centering */
-
 .post {
   margin: 2em auto;
   max-width: 50em;
@@ -240,7 +238,16 @@ header.post-header {
   width: 100%;
 }
 
-.post:before {
+.feedpost {
+  margin: 2em auto;
+  max-width: 50em;
+  background-color: white;
+  padding: 1em 2em;
+  position: relative;
+  width: 100%;
+}
+
+.feedpost:before {
   width: 100%;
   /*background: white;*/
   height: 100%;
@@ -253,12 +260,44 @@ header.post-header {
   transition: all 0.2s ease;
 }
 
-
-
-.post:hover:before {
+.feedpost:hover:before {
   top: 0;
-  outline: none;
-  background-color: white;
+  background-color: #FE987B;
+}
+
+.feedpost h1 {
+  font-family: Menlo-Regular;
+  font-size: 36px;
+  color: #FE987B;
+  letter-spacing: -0.085em;
+  margin-bottom: 0em;
+  margin-top: 0.5em;
+}
+
+.feedpost h1 a {
+  text-decoration: none;
+  color: #FE987B;
+}
+
+.feedpost h2 {
+  /* A cool project title: */
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: #646464;
+  margin-top: 0em;
+  padding-top: 0em;
+}
+
+.post-meta {
+  display: block;
+}
+
+.media {
+  display: block;
+  margin: auto;
+  width: 75%;
+  padding: 10px 0px;
 }
 
 .animate {

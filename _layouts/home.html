@@ -3,10 +3,12 @@ layout: default
 ---
   {{ content }}
   {% for post in site.posts %}
-    <div class="post">
-      <h1 class="page-heading"><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h1>
+    <div class="feedpost">
+      <h1><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h1>
+      {% if post.subtitle %}<h2>{{ post.subtitle | escape }}</h2>{% endif %}
       {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
       <span class="post-meta">{{ post.date | date: date_format }}</span>
+      {% if post.video_embed %}<iframe class="media" src="{{ post.video_embed }}" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>{% endif %}
     </div>
   {% endfor %}
 

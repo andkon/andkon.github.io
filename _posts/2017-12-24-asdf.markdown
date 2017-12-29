@@ -1,6 +1,8 @@
 ---
-title: asdf
+title: Asdf This is Cool
+subtitle: This is a subtitle
 layout: post
+video_embed: https://player.vimeo.com/video/239093521?color=FE987B
 ---
 # Okay
 This is a post.

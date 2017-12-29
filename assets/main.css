@@ -256,8 +256,9 @@ header.post-header {
 
 
 .post:hover:before {
-  top:0px;
-  left: 0px;
+  top: 0;
+  outline: none;
+  background-color: white;
 }
 
 .animate {

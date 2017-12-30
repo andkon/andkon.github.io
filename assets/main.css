@@ -477,6 +477,7 @@ footer .button {
 /* Responsiveness */
 
 @media (min-width: 600px) {
+  /* make the header fall in line */
   .buttons {
     align-items: center;
     display: flex;
@@ -520,10 +521,11 @@ footer .button {
   /*This is where we shrink the post*/
 
   .page-content {
-    padding-left: 0;
+    padding: 0 0;
   }
   .post {
     margin: 2em 0;
+    width: 100%;
   }
 
   .feedpost:before {
@@ -532,7 +534,7 @@ footer .button {
   }
 
   .feedpost {
-    margin: 2em 0;
+    box-sizing: border-box;    
   }
   .media {
     margin: 0 0;

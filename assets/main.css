@@ -212,44 +212,67 @@ header.home-header-wrapper a:hover {
   right: 0px;
 }
 
-header.post-header {
-  background-image: url('images/header.jpg');
+.post-header {
+  /*background-image: url('images/header.png');*/
+  background-image:
+        linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)), 
+        url('//spin.atomicobject.com/wp-content/uploads/20170324102432/portfolio-tips-feature-image.jpg');
   height: 16em;
-  width: 100%;
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center center;
+  text-align: left;
 }
 
-header .header-overlay {
-  background-color: ;
+.post-header-content {
+  max-width: 50em;
+  padding: 2em 3em;
+  margin: 0em auto;
 }
+
+/* header: */
+
 
 .post-header h1 {
-  margin-top: 0;
+  margin-top: 0em;
+  margin-bottom: 0em;
+  font-size: 36;
 }
 
 .post-header h2 {
-
+  margin-top: 0em;
+  padding-top: 0em;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  font-size: 24;
+  color: white;  
 }
 
 header .logo {
-  position: fixed;
+  float: left;
+  position: relative;
   vertical-align: top;
   height: 90px;
   width: 90px;
   margin-left: 10px;
   margin-top: 10px;
+  background-image: url("images/post_header_logo.png");
+  background-position: center center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
-
-
 /* Classes */
 
 .page-content {
   padding: 0 2em;
 }
 
+.post-content {
+  padding: 0 0;
+}
+
 .post {
-  margin: 2em auto;
+  margin: -2em auto;
   max-width: 50em;
   background-color: white;
   padding: 1em 3em;
@@ -476,8 +499,44 @@ footer .button {
 
 /* Responsiveness */
 
+
+@media (max-width: 1024px) {
+  .logo {
+    background-image: url('images/skinny_post_header.png');
+    width: 45px;
+  }
+}
+
+
+@media (max-width: 900px) {
+  /*This is where we shrink the post*/
+  .post-header-content {
+    padding-top: 0;
+  }
+
+  .page-content {
+    padding: 0 0;
+  }
+  .post {
+    box-sizing: border-box;
+  }
+
+  .feedpost:before {
+    top: -10px;
+    left: 0px;
+  }
+
+  .feedpost {
+    box-sizing: border-box;    
+  }
+  .media {
+    margin: 0 0;
+  }
+}
+
 @media (min-width: 600px) {
   /* make the header fall in line */
+
   .buttons {
     align-items: center;
     display: flex;
@@ -517,26 +576,3 @@ footer .button {
   }
 }
 
-@media (max-width: 900px) {
-  /*This is where we shrink the post*/
-
-  .page-content {
-    padding: 0 0;
-  }
-  .post {
-    margin: 2em 0;
-    width: 100%;
-  }
-
-  .feedpost:before {
-    top: -10px;
-    left: 0px;
-  }
-
-  .feedpost {
-    box-sizing: border-box;    
-  }
-  .media {
-    margin: 0 0;
-  }
-}

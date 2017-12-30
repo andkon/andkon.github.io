@@ -7,7 +7,7 @@
 
     {% include post_header.html %}
 
-    <main class="page-content" aria-label="Content">
+    <main class="post-content" aria-label="Content">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <p class="post-meta">
           <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -30,10 +30,11 @@
 
   </body>
 
+{% if page.background_image %}
 <script type="text/javascript">
-$('.post-header').css("background-image", "url('/assets/images/{{ background-image }}')");  
+$('.post-header').css("background-image", "linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)), url('/assets/images/{{ page.background_image }}')");
 
 </script>
-
+{% endif %}
 </html>
 

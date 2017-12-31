@@ -216,7 +216,7 @@ header.home-header-wrapper a:hover {
   /*background-image: url('images/header.png');*/
   background-image:
         linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)), 
-        url('//spin.atomicobject.com/wp-content/uploads/20170324102432/portfolio-tips-feature-image.jpg');
+        url('images/header.jpg');
   height: 16em;
   background-size: cover;
   background-repeat: no-repeat;
@@ -254,8 +254,8 @@ header .logo {
   vertical-align: top;
   height: 90px;
   width: 90px;
-  margin-left: 10px;
-  margin-top: 10px;
+  top: 10px;
+  left: 10px;
   background-image: url("images/post_header_logo.png");
   background-position: center center;
   background-size: 100% 100%;
@@ -339,8 +339,9 @@ header .logo {
   display: block;
   margin: auto;
   width: 75vw;
-  height: 42.2vw;
+  height: 35vw;
   max-width: 640px;
+  max-height: 400px;
   /*height: 360px;*/
   padding: 10px 0px;
 }
@@ -500,11 +501,15 @@ footer .button {
 /* Responsiveness */
 
 
-@media (max-width: 1024px) {
-  .logo {
+@media (max-width: 1000px) {
+  header .logo {
+    margin-right: 10px;
+    left: 0px;
+    top: 0px;
     background-image: url('images/skinny_post_header.png');
     width: 45px;
   }
+  header 
 }
 
 

@@ -4,8 +4,36 @@ subtitle: This is a subtitle
 layout: post
 video_embed: https://player.vimeo.com/video/239093521?color=FE987B
 background_image: header.jpg
+category: art
 ---
 ### Okay
 This is a post.
 
 [This is a url](http://github.com).
+
+
+# This is a big header
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+## This is a smaller header
+Indeedly do.
+
+### This is an even smaller header.
+And the paragraph that comes after it.
+
+> This is a quote, I think.
+
+Here's some space.
+
+> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+> # Big quote. Such a big, flowing, smart quote.
+
+Here's some code inline `This is code` which is neat.
+
+And here's what it looks like when you do multiline code:
+```
+def this_is_multiline_code(i hope):
+	return "okay lol"
+```
+That's also neat, I'd say.

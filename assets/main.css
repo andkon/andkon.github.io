@@ -28,14 +28,45 @@ footer {
   text-align: center;
 }
 
+blockquote {
+  margin: 0 0;
+  font-style: italic;
+  font-weight: 300;
+}
 
+blockquote p {
+  border-left: 2px solid #CDCDCD;
+  padding-left: 1em;
+  padding-right: 2em;
+}
+
+blockquote h1 {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  font-size: 24;
+  color: #737373;
+}
+
+blockquote h1:before {
+  content: ">>> ";
+  font-style: normal;
+  font-size: 36;
+  font-family: "Menlo", "Fira Mono", monospace;
+  color: #F7B077;
+  letter-spacing: -3.06px;
+}
 /* 02 Font family */
 
 body {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
   line-height: 1.5;
   padding: 4em 1em;
-  color: #555;
+  color: #646464;
+}
+
+h1 {
+  font-size: 2em;
 }
 
 h2 {
@@ -46,6 +77,11 @@ h2 {
 h1,
 h2 {
   color: #ff8f13;
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 /* 05 Balance */
@@ -122,8 +158,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
 strong {
   font-weight: 500;
 }
@@ -362,6 +396,7 @@ a.read-more {
 
 a.read-more:before {
   content: "🍑";
+  font-size: 20px;
   display: inline-block;
   text-decoration: none;
   padding-right: 5px;
@@ -506,6 +541,10 @@ footer .button {
 
 .resource-css-reference .resource-icon {
   padding: 20px;
+}
+
+.rss-subscribe {
+  text-align: center;
 }
 
 /* Responsiveness */

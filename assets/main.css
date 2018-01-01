@@ -192,7 +192,7 @@ header.home-header-wrapper {
   top: 0px;
 }
 
-header.home-header-wrapper a {
+.header-link {
   color: white;
   font-size: 0.6em;
   letter-spacing: 0.2em;
@@ -203,7 +203,7 @@ header.home-header-wrapper a {
   transition-property: color, background;
 }
 
-header.home-header-wrapper a:hover {
+.header-link:hover {
   background: #e81c4f;
   color: white;
 }
@@ -238,13 +238,30 @@ header.home-header-wrapper a:hover {
   left: 80%;
 }
 
-.home-header a {
+.home-header > a {
   margin: auto;
   position: absolute;
   bottom: 0px;
   left: 0px;
   right: 0px;
 }
+
+.header-icon-link {
+  font-family: "Menlo", "Fira Mono", monospace;
+  color: white;
+  bottom: auto;
+  /*font-size: 2.5em;*/
+  font-weight: 300;
+  margin: auto;
+  left: 0px;
+  right: 0px;
+  text-decoration-color: #e81c4f;
+}
+
+.header-icon-link:hover {
+  background: none;
+}
+
 
 .post-header {
   /*background-image: url('images/header.png');*/

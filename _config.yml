@@ -9,5 +9,15 @@ defaults:
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
       layout: "post.html"
+      permalink: "/:title.html"
+  -
+    scope:
+      path: ""
+      type: category
+    values:
+      layout: "category"
 exclude:
   ["andk-jekyll.sublime-project","andk-jekyll.sublime-workspace"]
+collections:
+  category:
+    output: true

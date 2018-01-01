@@ -4,7 +4,8 @@ subtitle: This is a subtitle
 layout: post
 video_embed: https://player.vimeo.com/video/239093521?color=FE987B
 background_image: header.jpg
-category: art
+categories: 
+- "art"
 ---
 ### Okay
 This is a post.

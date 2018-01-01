@@ -520,10 +520,50 @@
 	"buffers":
 	[
 		{
-			"file": "_posts/2017-12-14-birthday-post.md",
+			"file": "_includes/home-head.html",
 			"settings":
 			{
-				"buffer_size": 47,
+				"buffer_size": 837,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_includes/header.html",
+			"settings":
+			{
+				"buffer_size": 144,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "assets/main.css",
+			"settings":
+			{
+				"buffer_size": 6526,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_layouts/home.html",
+			"settings":
+			{
+				"buffer_size": 879,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_layouts/post.html",
+			"settings":
+			{
+				"buffer_size": 1253,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_config.yml",
+			"settings":
+			{
+				"buffer_size": 487,
 				"line_ending": "Unix"
 			}
 		}
@@ -536,7 +576,7 @@
 		[
 			[
 				"jekyll",
-				"Jekyll: New post"
+				"Jekyll: Edit template"
 			],
 			[
 				"install",
@@ -585,6 +625,10 @@
 	"file_history":
 	[
 		"/Users/konoff/Developer/andk/andk/_posts/2017-12-14-birthday-post.md",
+		"/Users/konoff/Developer/andk/andk/assets/style.css",
+		"/Users/konoff/Developer/andk/andk/index.html",
+		"/Users/konoff/Developer/andk/andk/_posts/2017-12-24-asdf.markdown",
+		"/Users/konoff/Developer/andk/andk/andk-jekyll.sublime-project",
 		"/Users/konoff/Developer/Advent of Code/fourth.exs",
 		"/Users/konoff/Developer/Advent of Code/second.exs",
 		"/Users/konoff/Developer/Advent of Code/third.py",
@@ -707,11 +751,7 @@
 		"/Users/konoff/Developer/ProgrammingPhoenix/throwawaych2/hello/web/controllers/page_controller.ex",
 		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/core/templates/edit.html",
 		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/core/templates/record.html",
-		"/Users/konoff/Developer/airbnb-app/Dev/airbnb-python/airbnb/api.py",
-		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/emailer/gunner.py",
-		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/emailer/tests.py",
-		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/emailer/emails.py",
-		"/Users/konoff/Developer/airbnb-app/Dev/guestbot/core/static/assets/attachments_button.js"
+		"/Users/konoff/Developer/airbnb-app/Dev/airbnb-python/airbnb/api.py"
 	],
 	"find":
 	{
@@ -730,6 +770,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"header",
+			"jekyll",
 			"results",
 			"return",
 			"%",
@@ -855,9 +897,7 @@
 			"stripenew",
 			"nestedlisting",
 			"stripe",
-			"stripecustomer",
-			"BasicLoginRequiredView",
-			"onboard"
+			"stripecustomer"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -877,27 +917,166 @@
 	"groups":
 	[
 		{
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "_posts/2017-12-14-birthday-post.md",
+					"file": "_includes/home-head.html",
 					"settings":
 					{
-						"buffer_size": 47,
+						"buffer_size": 837,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								837,
+								837
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "_includes/header.html",
+					"settings":
+					{
+						"buffer_size": 144,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								144,
+								144
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "assets/main.css",
+					"settings":
+					{
+						"buffer_size": 6526,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1991,
+								1991
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2274.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "_layouts/home.html",
+					"settings":
+					{
+						"buffer_size": 879,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								19,
+								19
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "_layouts/post.html",
+					"settings":
+					{
+						"buffer_size": 1253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								814,
+								814
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Djaneiro/Syntaxes/HTML (Django).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "_config.yml",
+					"settings":
+					{
+						"buffer_size": 487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								248,
+								248
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

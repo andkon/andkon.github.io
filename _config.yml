@@ -3,15 +3,13 @@ defaults:
       path: "assets/images"
     values:
       image: true
-  -
-    scope:
+  - scope:
       path: "" # an empty string here means all files in the project
       type: "posts" # previously `post` in Jekyll 2.2.
     values:
-      layout: "post.html"
+      layout: "post"
       permalink: "/:title.html"
-  -
-    scope:
+  - scope:
       path: ""
       type: category
     values:

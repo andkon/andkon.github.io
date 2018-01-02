@@ -323,7 +323,8 @@ header .logo {
 }
 
 .post {
-  margin: -2em auto;
+  margin: -4em auto;
+  margin-bottom: 4em;
   max-width: 50em;
   background-color: white;
   padding: 1em 3em;
@@ -435,20 +436,38 @@ a.read-more:before {
 }
 
 html a.button {
-  border: 1px solid #d8dee9;
-  border-radius: 290486px;
-  color: #b0bfc7;
+  border: 1px solid white;
+  /*border-radius: 290486px;*/
+  color: #646464;
   padding: 1em 1.5em;
   text-align: center;
   text-decoration: none;
   transition: none 200ms ease-out;
   transition-property: color, background;
+  position: relative;
+  background: #ffab68;
+}
+
+.button:before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -.5rem;
+  left: -0.5rem;
+  outline: 1px solid white;
+  content: "";
+  z-index: -1;
+  transition: all 0.2s ease;
 }
 
 .button:hover {
   background: #e81c4f;
   border-color: transparent;
   color: rgba(255, 255, 255, 0.5);
+}
+.button:hover:before {
+  top: 0;
+  left: 0;
 }
 
 .button em {
@@ -474,6 +493,14 @@ html a.button {
 
 .button.github:hover {
   background: #333;
+}
+
+.button.grokwork strong {
+  color: #3F9A5A;
+}
+
+.button.grokwork:hover {
+  background: #3F9A5A;
 }
 
 .button.facebook strong {

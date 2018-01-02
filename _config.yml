@@ -19,3 +19,5 @@ exclude:
 collections:
   category:
     output: true
+title: Andrew Konoff's Cool Web Site
+google_analytics: "UA-39284830-3"

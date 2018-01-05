@@ -25,7 +25,8 @@
         {% endif %}
       </article>
     </main>
-    <p class="rss-subscribe">🍑 <a href="{{ "/" | relative_url }}">go back home</a> or subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a> 🍑</p>
+    {% include post_footer.html %}
+
   </body>
 
 {% if page.background_image %}

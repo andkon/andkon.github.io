@@ -411,6 +411,68 @@ header .logo {
   padding: 10px 0px;
 }
 
+
+
+
+footer.post-footer {
+  text-align: left;
+  margin: -4em auto;
+  margin-bottom: 0em;
+  max-width: 50em;
+  background-color: transparent;
+  padding: 2em 0;
+  padding-bottom: 0em;
+}
+
+.post-footer-buttons {
+  margin: 1em auto;
+}
+
+footer.post-footer h1 {
+  color: white;
+  font-family: "Menlo", "Fira Mono", monospace;
+  font-size: 2.5em;
+  font-weight: 300;
+  padding: 0 0;
+  margin: 0 0;
+  line-height: 1.12em;
+}
+
+/*footer.post-footer p {
+
+}*/
+
+footer.post-footer .author-pic {
+  margin-top: 2em;
+  float: right;
+  width: 122px;
+  height: 122px;
+  position: relative;
+  margin: 0 1em;
+  padding: 0;
+  display: inline-block;
+}
+
+footer.post-footer .author-pic:before {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -.5rem;
+  left: 0.5rem;
+  outline: 1px solid #979797;
+  z-index: -1;
+  content: "";
+}
+.author-pic > img {
+  height: 122px;
+  width: 122px;
+}
+
+.about {
+  display: block;
+}
+
+
 a.read-more {
 
 }
@@ -456,7 +518,7 @@ html a.button {
   height: 100%;
   position: absolute;
   top: -.5rem;
-  left: -0.5rem;
+  left: .5rem;
   outline: 1px solid white;
   content: "";
   z-index: -1;
@@ -506,20 +568,21 @@ html a.button {
   background: #3F9A5A;
 }
 
-.button.facebook strong {
-  color: #3b5998;
-}
-
-.button.facebook:hover {
-  background: #3b5998;
-}
-
 .button.twitter strong {
   color: #55acee;
 }
 
 .button.twitter:hover {
   background: #55acee;
+}
+
+/* Actually used button styles: */
+.button.subscribe strong {
+  color: #9012FE;
+}
+
+.button.subscribe:hover {
+  background: #9012FE;
 }
 
 footer .button {
@@ -638,6 +701,15 @@ footer .button {
   .media {
     margin: 0 0;
   }
+
+  footer.post-footer {
+    padding-left: 1em;
+  }
+  .author-pic {
+    display: block;
+    margin: auto;
+
+  }
 }
 
 @media (min-width: 600px) {
@@ -648,6 +720,8 @@ footer .button {
     display: flex;
     justify-content: space-between;
     padding: 1em 0;
+    margin-bottom: 5em 5em;
+    clear: right;
   }
 
   .buttons .button {

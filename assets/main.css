@@ -438,9 +438,9 @@ footer.post-footer h1 {
   line-height: 1.12em;
 }
 
-/*footer.post-footer p {
-
-}*/
+footer.post-footer p {
+  max-width: 35em;
+}
 
 footer.post-footer .author-pic {
   margin-top: 2em;

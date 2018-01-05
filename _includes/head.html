@@ -7,7 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
-  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <meta name="description" content="{{ page.subtitle | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@andknf">
+  {% if page.title %}<meta name="twitter:title" content="{{ page.title }}">{% endif %}
+  <meta name="twitter:description" content="{{ page.subtitle | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}">
+  <meta name="twitter:creator" content="@andknf">
+  {% if page.background_image %}<meta name="twitter:image" content="{{site.url}}/assets/images/{{ page.background_image }}">{%else%}
+  <meta name="twitter:image" content="{{site.url}}/assets/images/header.jpg">
+  {%endif%}
+
+  <!-- Open Graph data -->
+  {% if page.title %}<meta property="og:title" content="{{ page.title}}" />{%endif%}
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ page.url | absolute_url }}" />
+  {% if page.background_image %}<meta property="og:image" content="{{site.url}}/assets/images/{{ page.background_image }}" />{%else%}
+  <meta property="og:image" content="{{site.url}}/assets/images/header.jpg" />
+  {%endif%}
+  <meta property="og:description" content="{{ page.subtitle | default: page.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="{{'/assets/images/favicon-32x32.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="96x96" href="{{'/assets/images/favicon-96x96.png' | relative_url }}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{'/assets/images/favicon-16x16.png' | relative_url }}">

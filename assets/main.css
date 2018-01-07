@@ -373,7 +373,7 @@ header .logo {
 }
 
 .feedpost h1 {
-  font-family: Menlo-Regular;
+  font-family: "Menlo", "Fira Mono", monospace;
   font-size: 36px;
   color: #FE987B;
   letter-spacing: -0.085em;

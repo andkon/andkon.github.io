@@ -5,7 +5,7 @@ category: writing
 ---
 Here's a trick that may work for you too if you're depressed, but which you should try even if you're just moderately-to-seriously stuck.
 
-It's a trick I learned on vacation after an especially tumultuous period in my life, where I'd already changed a bunch of things I thought were actually responsible for my depression, where I realized that I wasn't getting much better. It's merely a trick for when things should be moving but aren't, and not a substitute for medication (if you need it) and therapy (which we all need).
+It's a trick I learned on vacation after an especially tumultuous period in my life, after I'd already changed a bunch of things I thought were actually responsible for my depression, when I realized that I still wasn't getting much better. It's merely a trick for when things should be moving but aren't, and not a substitute for medication (if you need it) and therapy (which we all need).
 
 I learned how to backflip.
 

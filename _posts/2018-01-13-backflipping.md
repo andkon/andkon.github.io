@@ -2,6 +2,7 @@
 title: Backflipping my way out of depression
 layout: post
 category: writing
+background_image: DSCF5208.jpg
 ---
 Here's a trick that may work for you too if you're depressed, but which you should try even if you're just moderately-to-seriously stuck.
 

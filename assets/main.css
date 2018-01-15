@@ -50,7 +50,7 @@ blockquote h1 {
 blockquote h1:before {
   content: ">>> ";
   font-style: normal;
-  font-size: 36;
+  font-size: 36px;
   font-family: "Menlo", "Fira Mono", monospace;
   color: #F7B077;
   letter-spacing: -3.06px;
@@ -289,7 +289,8 @@ header.home-header-wrapper {
   margin-top: 0em;
   margin-bottom: 0em;
   padding-top: 1em;
-  font-size: 36;
+  font-size: 2.2em;
+  letter-spacing: -0.05em;  
 }
 
 .post-header h2 {

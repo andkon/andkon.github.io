@@ -9,20 +9,21 @@
 
     <main class="post-content" aria-label="Content">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-        <p class="post-meta">
-          <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-            {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
-            {{ page.date | date: date_format }}
-          </time>
-          {% if page.author %}
-            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
-          {% endif %}</p>
         <div class="post-content" itemprop="articleBody">
           {{ content }}
         </div>
         {% if site.disqus.shortname %}
           {% include disqus_comments.html %}
         {% endif %}
+
+      <p class="post-meta">
+      <time class="" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
+        {{ page.date | date: date_format }}
+      </time>
+      {% if page.author %}
+        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
+      {% endif %}</p>
       </article>
     </main>
     {% include post_footer.html %}

@@ -2,6 +2,7 @@
 title: "Journeying"
 subtitle: "In search of transformative value"
 background_image: IMG_8598.jpg
+category: writing
 ---
 I realized the other day that people don't often undertake quests anymore. The hobbits holding the One Ring had to go on a quest to drop it in a volcano; modern problems, by contrast, don't seem to have singular solutions that would make questing useful. 
 

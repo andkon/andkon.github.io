@@ -1,12 +1,19 @@
 ---
 layout: default
 ---
-<article class="feedpost">
 
-	<h1 class="post-title">{{ page.title | escape }}</h1>
+{% include header.html %}
 
-	<div class="post-content">
-		{{ content }}
-	</div>
+<main class="page-content" aria-label="Content">
+	<article class="feedpost">
 
-</article>
+		<h1 class="post-title">{{ page.title | escape }}</h1>
+
+		<div class="post-content">
+			{{ content }}
+		</div>
+
+	</article>
+
+</main>
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

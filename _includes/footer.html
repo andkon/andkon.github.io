@@ -1,7 +1,7 @@
 <footer>
   <nav class="buttons">
     {% if paginator.previous_page %}
-    <a class="button previous-page" href="{{ paginator.previous_page_path }}" target="_blank">
+    <a class="button previous-page" href="{{ paginator.previous_page_path }}">
       <em>Page {{ paginator.previous_page }} of {{ paginator.total_pages }}</em>
       <strong>BACKWARDS</strong>
     </a>
@@ -11,7 +11,7 @@
       <strong>PAGE {{ paginator.page }} OF {{ paginator.total_pages }}</strong>
     </a>
     {% if paginator.next_page %}
-    <a class="button next-page" href="{{ paginator.next_page_path }}" target="_blank">
+    <a class="button next-page" href="{{ paginator.next_page_path }}">
       <em>Page {{ paginator.next_page }} of {{ paginator.total_pages }}</em>
       <strong>ONWARDS</strong>
     </a>

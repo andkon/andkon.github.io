@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% include header.html %}
+
+<main class="page-content" aria-label="Content">
   {{ content }}
   {% for post in paginator.posts %}
     <div class="feedpost">
@@ -13,3 +16,6 @@ layout: default
       <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
     </div>
   {% endfor %}
+</main>
+{% include footer.html %}
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

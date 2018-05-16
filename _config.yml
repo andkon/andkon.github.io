@@ -26,4 +26,4 @@ google_analytics: "UA-39284830-3"
 plugins:
   - jekyll-paginate
   - jekyll-feed
-paginate: 3
+paginate: 5

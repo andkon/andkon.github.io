@@ -608,6 +608,57 @@ html a.button {
       background: #55acee;
     }
   }
+
+  &.previous-page {
+    strong {
+      color: #333;
+    }
+
+    &:before {
+      top: -.5rem;
+      left: -.5rem;
+    }
+
+    &:hover {
+      background: #333;
+    }
+  }
+
+  &.page-counter {
+    background: #3F9A5A;
+    border-color: transparent;
+    color: rgba(255, 255, 255, 0.5);
+
+    strong {
+      color: white;
+    }
+
+    &:before {
+      top: -0.5em;
+      left: -0.5em;
+      // right: 10%;
+      width: 110%;
+    }
+
+    &:hover {
+      background: #3F9A5A;
+    }
+  }
+
+  &.next-page {
+    strong {
+      color: #333;
+    }
+
+    &:before {
+      top: -.5rem;
+      left: .5rem;
+    }
+
+    &:hover {
+      background: #333;
+    }
+  }
 }
 
 

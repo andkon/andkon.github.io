@@ -2,7 +2,7 @@
 layout: default
 ---
   {{ content }}
-  {% for post in site.posts %}
+  {% for post in paginator.posts %}
     <div class="feedpost">
       <h1><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h1>
       {% if post.subtitle %}<h2>{{ post.subtitle | escape }}</h2>{% endif %}
@@ -13,4 +13,3 @@ layout: default
       <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
     </div>
   {% endfor %}
-</div>

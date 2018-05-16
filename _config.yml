@@ -15,9 +15,15 @@ defaults:
     values:
       layout: "category"
 exclude:
-  ["andk-jekyll.sublime-project","andk-jekyll.sublime-workspace"]
+  ["andk-jekyll.sublime-project","andk-jekyll.sublime-workspace", "Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
 collections:
   category:
     output: true
 title: Andrew Konoff's Cool Web Site
+url: http://konoff.co
+description: Andrew Konoff's cool web site
 google_analytics: "UA-39284830-3"
+plugins:
+  - jekyll-paginate
+  - jekyll-feed
+paginate: 3

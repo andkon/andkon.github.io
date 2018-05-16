@@ -1,8 +1,20 @@
 <footer>
   <nav class="buttons">
-    <a class="button subscribe" href="https://tinyletter.com/andk" target="_blank">
-      <em>Subscribe to</em>
-      <strong>💌 WEIRD APP WEEKLY 💌</strong>
+    {% if paginator.previous_page %}
+    <a class="button previous-page" href="{{ paginator.previous_page_path }}" target="_blank">
+      <em>Page {{ paginator.previous_page }} of {{ paginator.total_pages }}</em>
+      <strong>BACKWARDS</strong>
     </a>
+    {% endif %}
+    <a class="button page-counter">
+      <em>You're on</em>
+      <strong>PAGE {{ paginator.page }} OF {{ paginator.total_pages }}</strong>
+    </a>
+    {% if paginator.next_page %}
+    <a class="button next-page" href="{{ paginator.next_page_path }}" target="_blank">
+      <em>Page {{ paginator.next_page }} of {{ paginator.total_pages }}</em>
+      <strong>ONWARDS</strong>
+    </a>
+    {% endif %}
   </nav>
 </footer>

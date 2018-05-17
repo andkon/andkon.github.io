@@ -181,7 +181,6 @@ body {
 
 /* Header stuff */
 
-
 header {
   h1 {
    font-family: "Menlo", "Fira Mono", monospace;
@@ -189,88 +188,65 @@ header {
    font-size: 2.5em;
    font-weight: 300;
   }
-  &.home-header-wrapper {
-    font-family: "Menlo", "Fira Mono", monospace;
-    line-height: 1.2;
-    height: 8em;
-    padding: 1vw;
-    text-align: center;
-    position: relative;
-    top: 0px;
-  }
 }
 
-.header-link {
-  color: white;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-  padding: 1em 2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: none 200ms ease-out;
-  transition-property: color, background;
-  &:hover {
-    background: #e81c4f;
+.home-header {
+  /*background-image: url('images/header.png');*/
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image:
+        linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)),
+        url('images/header.jpg');
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-align: center;
+  z-index: 2;
+
+  h1 {
+    margin-top: 0em;
+    margin-bottom: 0em;
+    padding-top: 1em;
+    font-size: 2.2em;
+    letter-spacing: -0.05em;
+  }
+
+  h2 {
+    margin-top: 0em;
+    padding-top: 0em;
+    font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    font-weight: 300;
+    font-size: 24;
     color: white;
   }
+  .fix-sticky & {
+    position: fixed;
+    height: 100px;
+    min-height: 0px;
+    padding-bottom: 0px;
+  }
 }
 
-.home-header-wrapper > div {
-  display: inline-block;
-  width: 20%;
-  height: 8em;
-  padding: 0;
+.sticky { /* Container just in case we want more than just the search input to come along */
   position: absolute;
-  top: 0px;
+
+  .fix-sticky & {
+    position: fixed;
+    top: 10px;
+  }
+
+
 }
 
-.home-header{
-  &:nth-child(1) {
-    background: #FE987B;
-    left: 0%;
-  }
-  &:nth-child(2) {
-    background: #FDA679;
-    left: 20%;
-  }
-  &:nth-child(3) {
-    background: #FEB57A;
-    left: 40%;
-  }
-  &:nth-child(4) {
-    background: #FEC57A;
-    left: 60%;
-  }
-  &:nth-child(5) {
-    background: #FDD378;
-    left: 80%;
-  }
-  > a {
-    margin: auto;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
+.top {
+  .fix-sticky & {
+    height: 200px;
+    position: relative;
   }
 }
 
-.header-icon-link {
-  font-family: $monospace;
-  color: white;
-  bottom: auto;
-  /*font-size: 2.5em;*/
-  font-weight: 300;
-  margin: auto;
-  left: 0px;
-  right: 0px;
-  text-decoration-color: #e81c4f;
-
-  &:hover {
-    background: none;
-  }
-}
-
-/* header: */
 
 .post-header {
   /*background-image: url('images/header.png');*/

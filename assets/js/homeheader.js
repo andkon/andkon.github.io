@@ -1,8 +1,11 @@
-$(window).scroll(function(){
-    if ($(window).scrollTop() >= 150) {
-        $('#hw').addClass('fix-sticky');
-    }
-    else {
-        $('#hw').removeClass('fix-sticky');
-    }
+var wrap = $("#wrap");
+
+wrap.on("scroll", function(e) {
+
+  if (this.scrollTop > 147) {
+    wrap.addClass("fix-search");
+  } else {
+    wrap.removeClass("fix-search");
+  }
+
 });

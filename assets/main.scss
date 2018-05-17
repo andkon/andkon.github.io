@@ -206,8 +206,6 @@ header {
 
 .home-header {
   /*background-image: url('images/header.png');*/
-  top: 0;
-  left: 0;
   width: 100%;
   background-image:
         linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)),
@@ -217,14 +215,20 @@ header {
   background-repeat: no-repeat;
   background-position: center center;
   text-align: center;
-  z-index: 2;
+  position: relative;
+  z-index: -2;
 
   h1 {
     margin-top: 0em;
     margin-bottom: 0em;
     padding-top: 1em;
-    font-size: 2.2em;
     letter-spacing: -0.05em;
+    font-family: "Menlo", "Fira Mono", monospace;
+    color: white;
+    font-size: 2.0em;
+    font-weight: 300;
+    max-width: 650px;
+    margin: auto;
   }
 
   h2 {
@@ -254,24 +258,36 @@ header {
   width: 800px;
   height: 100px;
   margin: auto;
-  bottom: 0;
-  left: auto;
-  right: auto;
-  display: flex;
-  align-items: flex-end;
-  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  position: fixed;
 
-  > div {
+  a {
     display: inline-block;
     width: 20%;
-    height: 1em;
     padding: 0;
     position: absolute;
     top: 0px;
+    text-align: center;
+
+    &:hover {
+      background: #e81c4f;
+      color: white;
+    }
+
   }
 }
 
 .navbar-item {
+  color: white;
+  font-size: 0.6em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: none 200ms ease-out;
+  transition-property: color, background;
   padding-top: 2em;
 
   &:nth-child(1) {
@@ -297,17 +313,6 @@ header {
 }
 
 .header-link {
-  color: white;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-  padding: 2em 2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: none 200ms ease-out;
-  transition-property: color, background;
-  &:hover {
-    color: white;
-  }
 }
 
 .sticky {
@@ -415,8 +420,14 @@ header {
     transition: all 0.2s ease;
   }
 
+  &:first-child {
+    margin-top: -2em;
+  }
+
   &:hover:before {
-    top: 0;
+    // top: 0;
+    left: .5rem;
+    // right: -.5rem;
     background-color: #FE987B;
   }
 

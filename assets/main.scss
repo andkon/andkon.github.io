@@ -4,6 +4,9 @@
 
 // Colours
 $grey: #979797;
+$purp: #9012fe;
+$sunset-purp: rgba(144, 18, 254, 0.30980392156862746);
+$peachy-red: #e81c4f;
 
 // Fonts
 $monospace: "Menlo", "Fira Mono", monospace;
@@ -188,29 +191,28 @@ header {
    font-size: 2.5em;
    font-weight: 300;
   }
+}
 
-  .logo {
-   float: left;
-   position: relative;
-   vertical-align: top;
-   height: 90px;
-   width: 90px;
-   top: 10px;
-   left: 10px;
-   background-image: url("images/post_header_logo.png");
-   background-position: center center;
-   background-size: 100% 100%;
-   background-repeat: no-repeat;
- }
+.logo {
+ float: left;
+ position: fixed;
+ vertical-align: top;
+ height: 90px;
+ width: 90px;
+ top: 10px;
+ left: 10px;
+ background-image: url("images/post_header_logo.png");
+ background-position: center center;
+ background-size: 100% 100%;
+ background-repeat: no-repeat;
 }
 
 .home-header {
   /*background-image: url('images/header.png');*/
   width: 100%;
-  background-image:
-        linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)),
-        url('images/header.jpg');
-  height: 200px;
+  background-color: $sunset-purp;
+  // background-image: linear-gradient(rgba(255, 125, 20, 0.34), rgba(255, 125, 20, 0.34)), url("/assets/header.jpg");
+  min-height: 14em;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -229,6 +231,10 @@ header {
     font-weight: 300;
     max-width: 650px;
     margin: auto;
+
+    // background-image: url('https://web.archive.org/web/20091026063000/http://geocities.com/kuramapeach/island.gif');
+    // background-repeat: no-repeat;
+    // background-position: bottom;
   }
 
   h2 {
@@ -256,7 +262,6 @@ header {
 
 .navbar {
   width: 800px;
-  height: 100px;
   margin: auto;
   top: 0;
   left: 50%;
@@ -273,7 +278,7 @@ header {
     text-align: center;
 
     &:hover {
-      background: #e81c4f;
+      background: $peachy-red;
       color: white;
     }
 
@@ -632,10 +637,10 @@ html a.button {
   /* Actually used button styles: */
   &.subscribe {
     strong {
-      color: #9012FE;
+      color: $purp;
     }
     &:hover {
-      background: #9012FE;
+      background: $purp;
     }
   }
 
@@ -787,10 +792,14 @@ html a.button {
 @media (max-width: 1000px) {
   header .logo {
     margin-right: 10px;
-    left: 0px;
-    top: 0px;
+    left: 5px;
+    top: 5px;
     background-image: url('images/skinny_post_header.png');
     width: 45px;
+  }
+
+  .navbar-item {
+    
   }
 }
 

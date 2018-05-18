@@ -211,11 +211,10 @@ header {
   /*background-image: url('images/header.png');*/
   width: 100%;
   background-color: $sunset-purp;
-  // background-image: linear-gradient(rgba(255, 125, 20, 0.34), rgba(255, 125, 20, 0.34)), url("/assets/header.jpg");
+  background-image: url("images/island.gif");
   min-height: 14em;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background-repeat: repeat-x;
+  background-position: bottom;
   text-align: center;
   position: relative;
   z-index: -2;
@@ -423,10 +422,6 @@ header {
     content: "";
     z-index: -1;
     transition: all 0.2s ease;
-  }
-
-  &:first-child {
-    margin-top: -2em;
   }
 
   &:hover:before {
@@ -792,22 +787,64 @@ html a.button {
 @media (max-width: 1000px) {
   header .logo {
     margin-right: 10px;
-    left: 5px;
-    top: 5px;
+    left: 0px;
+    top: 0px;
     background-image: url('images/skinny_post_header.png');
     width: 45px;
   }
 
-  .navbar-item {
-    
+  .wrap {
+    .logo {
+      display: none;
+    }
   }
 }
 
 
 @media (max-width: 900px) {
-  /*This is where we shrink the post*/
+  /*This is where we shrink the post and the nav header */
+  .navbar {
+    left: 0px;
+    top: 0px;
+    width: 200px;
+    display: inline-block;
+    position: absolute;
+    transform: none;
+    margin-right: 3em;
+
+    a {
+      display: inline;
+      position: relative;
+      text-align: left;
+      padding-left: 2em;
+    }
+    .navbar-item {
+      width: 0.05em;
+      height: 3em;
+      clear: both;
+      &:nth-child(n) {
+        // The positioning
+        left: 0px;
+        float: left;
+      }
+    }
+  }
+
+  .home-header {
+    h1 {
+      font-size: 1.5em;
+      position: absolute;
+      padding-left: 75px;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%)
+    }
+  }
+
   .post-header-content {
     padding-top: 0;
+    padding-left: 70px;
   }
 
   .page-content {

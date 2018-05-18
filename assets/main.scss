@@ -217,12 +217,11 @@ header {
   background-position: bottom;
   text-align: center;
   position: relative;
-  z-index: -2;
 
   h1 {
     margin-top: 0em;
     margin-bottom: 0em;
-    padding-top: 1em;
+    padding-top: 2em;
     letter-spacing: -0.05em;
     font-family: "Menlo", "Fira Mono", monospace;
     color: white;
@@ -275,6 +274,8 @@ header {
     position: absolute;
     top: 0px;
     text-align: center;
+    height: 3em;
+    line-height: 3em;
 
     &:hover {
       background: $peachy-red;
@@ -785,7 +786,7 @@ html a.button {
 
 
 @media (max-width: 1000px) {
-  header .logo {
+  .post-header .logo {
     margin-right: 10px;
     left: 0px;
     top: 0px;
@@ -793,7 +794,7 @@ html a.button {
     width: 45px;
   }
 
-  .wrap {
+  .home-header {
     .logo {
       display: none;
     }
@@ -805,7 +806,7 @@ html a.button {
   /*This is where we shrink the post and the nav header */
   .navbar {
     left: 0px;
-    top: 0px;
+    top: 2em;
     width: 200px;
     display: inline-block;
     position: absolute;
@@ -835,6 +836,7 @@ html a.button {
       font-size: 1.5em;
       position: absolute;
       padding-left: 75px;
+      padding-top: 0em;
       top: 50%;
       left: 50%;
       margin-right: -50%;

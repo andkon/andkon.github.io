@@ -20,15 +20,15 @@ Or consider something else that gave me shivers recently. It's [the first scene 
 >
 > **Jason**: Not in Portland. Portland is the city where young people go to retire.
 
-Being a millennial means never being able to retire, but certainly not when we're young. But yet we still remember the 90s, when it was apparently possible to do both. It's a foggy, dreamlike rememberance, but maybe that's appropriate. It does feel quite like a dream: so close that I could grasp it, but still ethereal enough that it slipped out of my fingers.
+Being a millennial means never being able to retire, but certainly not when we're young. But yet we still remember the 90s, when it was apparently possible to do both. It's a foggy, dreamlike remembrance, but maybe that's appropriate. The 90s seem close enough to touch, until you do, and the dream turns nightmarish. Inevitably, you're left fending off ghouls screeching about your entitlement.
 
-A lot has changed since, as the math will reveal. I am sorry in advance, because many of us have faced this horrible calculus many times. But it's important we walk down this road together, and imagine what it would take to live as Amanda Palmer or the Portlandians did.
+A lot has changed since that fateful decade, and it just takes a little math to show. I am sorry in advance, because many of us have faced this horrible calculus many times. But it's important we walk down this road together, and imagine what it would take to live as Amanda Palmer or the Portlandians did.
 
 I figured I could make $1500 a month busking. That'd be great. Of course, that'd only be in the summer. I do live in Canada, after all. But let's pretend that's not a problem. And let's assume I take all this money under the table, as is tradition as a busker.
 
-Let's consider expenses. If my rent was $500 a month, could I live on just another $1000 a month? Not with a car, nor with the hope of ever discharging student debt. I might have to bump up the total budget another $500, to $2000 a month.
+Let's consider expenses. If my rent was $500 a month (which is a big if), could I live on just another $1000 a month? Not with a car, nor with the hope of ever discharging student debt. I might have to bump up the total budget another $500, to $2000 a month.
 
-But that's — well, that's a $35,000 a year job. They don't exactly hand those out. That's not a retail job, and certainly not a coffee shop job. I got really lucky by getting good at fiddle, and I still can barely cut it. Everyone else, apparently, would have to be come a white-collar worker to live with equal thrift as Amanda Palmer did in the 90s.
+But that's — well, that's a $35,000 a year job. They don't exactly hand those out. That's not a retail job, and certainly not a coffee shop job. It seems that I got really lucky by getting good at fiddle, and I still could barely cut it. Everyone else, apparently, would have to be come a white-collar worker to live with equal thrift as Amanda Palmer did in the 90s.
 
 But if you're working 9-5 just to live with 3 other people, what space do you have to make the art that she did? To find something in life worth doing other than just surviving? The answer, I'm discovering, is "not much."
 

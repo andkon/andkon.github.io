@@ -1,6 +1,6 @@
 ---
 ---
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500|Fira+Mono:400');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500|Fira+Mono:400|Noto+Sans:700');
 
 // Colours
 $grey: #979797;
@@ -352,8 +352,10 @@ header {
     margin-top: 0em;
     margin-bottom: 0em;
     padding-top: 1em;
-    font-size: 2.2em;
-    letter-spacing: -0.05em;
+    font-size: 2.5em;
+    line-height: 1.2em;
+    // letter-spacing: -0.05em;
+    font-family: "Noto Sans", sans-serif;
   }
 
   h2 {

@@ -25,7 +25,7 @@ shoutout to the guy at my old coworking space from the dotcom era, who was extre
 
 shoutout to the brothers at my old coworking space whose business nearly failed before they got into an accelerator. shoutout to those brothers, who eventually did run out of money, but not before they could enjoy the social status commensurate with having their company partly owned by investors.
 
-shoutout to the agency that called my old coworking space home, whose logo looked so, so much like an ovum.
+shoutout to the agency that called my old coworking space home, whose logo looked so, so much like an ovum being impregnated by a sperm.
 
 shoutout to the guy at my old coworking space who left, and went to another coworking space, hoping it would be different. and then to another, hoping the same. and then to another city, though his hopes were fading and his startup had already failed by then.
 

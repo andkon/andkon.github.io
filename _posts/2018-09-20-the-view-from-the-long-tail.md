@@ -1,5 +1,6 @@
 ---
 title: The view from the long tail
+background_image: "armand-khoury-639055-unsplash.jpg"
 ---
 
 Part of the allure of blogs – for those who still write them – is that it's a thing you work at over time, and gradually there's this accretion of work and content and meaning that has a heft. It's the accumulation that leads, for once, to something that feels more like an asset than debt, and it's meant to lead somewhere really special and powerful and possibly to the best book deal a fashion blogger in Minnesota could hope for.

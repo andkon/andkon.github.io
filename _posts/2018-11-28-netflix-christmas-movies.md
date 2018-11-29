@@ -1,5 +1,7 @@
 ---
 title: An Attempted Survey of All the Netflix Christmas Movies
+category: writing
+background_image: christmasscreen.png
 ---
 
 I have been sick this whole week, so I watched all the Netflix Christmas movies. Just the Netflix Originals – meaning I didn't get to watch Merry Kissmas, unfortunately. What follows are reviews of those movies, made while I was still sick.
@@ -37,7 +39,7 @@ I didn't watch it, because from the preview, it looks exactly like The Princess 
 🤷🏼‍♂️🤷🏼‍♂️🤷🏼‍♂️🤷🏼‍♂️🤷🏼‍♂️
 
 ## The Holiday Calendar
-This looks promising. I'm too far gone to try, though. I couldn't tell you that I was paying attention to the other movies. But whatever resource my brain had been able to allocate is gone. Whatever scratch I was hoping to scratch has turned quite raw. Someone just told me there's a Grumpy Cat Christmas movie. 
+This looks promising. I'm too far gone to try, though. I couldn't tell you that I was paying attention to the other movies. But whatever resource my brain had been able to allocate is gone. Whatever scratch I was hoping to scratch has turned quite raw. Someone just told me there's a Grumpy Cat Christmas movie.
 
 I hope you're happy, Neflix. You've successfully made every permutation of a Christmas movie. Merry Christmas. I think I'm gonna go watch Die Hard again.
 

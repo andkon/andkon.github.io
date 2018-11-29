@@ -1,5 +1,6 @@
 ---
 title: The view from the long tail
+category: writing
 background_image: "armand-khoury-639055-unsplash.jpg"
 ---
 
@@ -9,7 +10,7 @@ Read Kottke, for instance. And damn. That's a great blog. And it keeps going. An
 
 If you put enough found things in a row, that's called curation. And somewhere along the way, if you do it enough, repeated content discovery combined with uninterrogated influences and unspoken commitments will lead directly and magically to something important: a viewpoint.
 
-Kottke and all good bloggers write from this viewpoint, which we should call the view from the blogosphere. A typical post is from today: a ukelele playing kid shreds. 
+Kottke and all good bloggers write from this viewpoint, which we should call the view from the blogosphere. A typical post is from today: a ukelele playing kid shreds.
 
 > Feng E started playing the ukelele when he was just five years old. His father pushed him into it but saying that he wouldn’t play Legos with the boy unless he took up the instrument. Six years later, he can casually slay Zombie by The Cranberries in the back of a car.
 

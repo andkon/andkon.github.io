@@ -10,6 +10,6 @@ What I think I didn't have, back then, was the capacity to grasp what I had, and
 
 After all that work, nothing really came of it. But on visiting home last year, I found the DV cam and tapes we'd filmed it on. And I realized, that after all my time making videos as a travel blogger, I might be able to actually create something my younger self would've been proud of. I finally had the sense of how to make something into what it should be.
 
-It's not the Feet of Fury that I thought I'd make. But 15 years later, it's at least something. It's a little bit absolution for all the frustration I made for myself with my teenage ambition. And it's also a model of how to do work, now: simply by doing it.
+It's not the Feet of Fury that I thought I'd make. But 15 years later, it's at least something. It's a little bit absolution for all the frustration I made for myself with my teenage ambition. And it's also a model of how to do work, now: by letting things slide.
 <!--more-->
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oZPOsv6RYN4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -207,14 +207,31 @@ header {
  background-repeat: no-repeat;
 }
 
+@mixin background-2x($path, $ext: "png", $w: auto, $h: auto, $pos: left top, $repeat: no-repeat) {
+
+  $at1x_path: "#{$path}.#{$ext}";
+  $at2x_path: "#{$path}@2x.#{$ext}";
+
+  background-image: url("#{$at1x_path}");
+  background-size: $w $h;
+  background-position: $pos;
+  background-repeat: $repeat;
+
+  @media all and (-webkit-min-device-pixel-ratio : 1.5),
+  all and (-o-min-device-pixel-ratio: 3/2),
+  all and (min--moz-device-pixel-ratio: 1.5),
+  all and (min-device-pixel-ratio: 1.5) {
+    background-image: url("#{$at2x_path}");
+  }
+}
+
 .home-header {
   /*background-image: url('images/header.png');*/
   width: 100%;
-  background-color: $sunset-purp;
-  background-image: url("images/island.gif");
-  min-height: 14em;
-  background-repeat: repeat-x;
-  background-position: bottom;
+  // background-color: $sunset-purp;
+  @include background-2x( 'images/Artboard', 'png', 1239px, 174px, bottom, repeat-x );
+  background-image: url("images/Artboard.png");
+  min-height: 10.8em;
   text-align: center;
   position: relative;
 

@@ -5,7 +5,7 @@ background_image: "armand-khoury-639055-unsplash.jpg"
 ---
 
 Part of the allure of blogs – for those who still write them – is that it's a thing you work at over time, and gradually there's this accretion of work and content and meaning that has a heft. It's the accumulation that leads, for once, to something that feels more like an asset than debt, and it's meant to lead somewhere really special and powerful and possibly to the best book deal a fashion blogger in Minnesota could hope for.
-
+<!--more-->
 Read Kottke, for instance. And damn. That's a great blog. And it keeps going. And sometimes he even has a point of view! And his contemporaries – the other ones still blogging – often end up also saying things. But primarily, it's there for this experience of finding, and distilling what's found into a breathless paragraph or two.
 
 If you put enough found things in a row, that's called curation. And somewhere along the way, if you do it enough, repeated content discovery combined with uninterrogated influences and unspoken commitments will lead directly and magically to something important: a viewpoint.

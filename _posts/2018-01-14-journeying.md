@@ -4,14 +4,15 @@ subtitle: "In search of transformative value"
 background_image: IMG_8598.jpg
 category: writing
 ---
-I realized the other day that people don't often undertake quests anymore. The hobbits holding the One Ring had to go on a quest to drop it in a volcano; modern problems, by contrast, don't seem to have singular solutions that would make questing useful. 
+I realized the other day that people don't often undertake quests anymore. The hobbits holding the One Ring had to go on a quest to drop it in a volcano; modern problems, by contrast, don't seem to have singular solutions that would make questing useful.
 
 And then I found [this helpful piece of thought](https://fandomdonuts.wordpress.com/2016/08/26/difference-between-quest-adventure-and-a-journey/) on the topic:
 ```
-* A Quest is trip to accomplish a Task. 
-* An Adventure is a trip without a destination. 
-* A Journey is when the trip is more important than the destination. 
+* A Quest is trip to accomplish a Task.
+* An Adventure is a trip without a destination.
+* A Journey is when the trip is more important than the destination.
 ```
+<!--more-->
 Having a life filled with tasks (local ones at that), and living in a time when GPS has found all the destinations for us, I think journeys are becoming pretty dang important. They're the only way we can still displace ourselves in space to make our lives more complete.
 
 There's this one concept from the philosophy of ecology that really stuck with me. It's called **transformative value**. And I think it's key to explaining why journeying matters.

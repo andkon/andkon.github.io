@@ -5,7 +5,7 @@ category: writing
 background_image: DSCF4352.jpg
 ---
 I've spent the last couple years struggling with whether or not I should be building startups. I was pretty deep in that community, and even though I think I won't try to start one again, a few really helpful principles from that world still rattle around in my head, and affect the things I build as an artist.
-
+<!--more-->
 Probably the most important is the idea of the **minimum viable product**. Faced with the challenge of creating something someone wants to pay for with the limited resources and funding of a startup, you gotta get pragmatic: you probably won’t get it right on the first try, but how do you get closer?
 
 It’s simple. You aim to create something small that explicitly tests your idea of why your product would be worth paying for. And if doesn’t work, then shit. You do it again. That’s why you try to make it **minimal**, because you want to put the fewest amount of resources you can into something while still testing if it could succeed. Having not wasted all your time and money on a single attempt, you can try again when it (likely) fails. But even this protean form of your product still has to be **viable**: it has to legitimately meet people’s needs, provide enough revenue or growth to justify continued investment, and give you evidence that you’re on the right path. Viability is what you’re in search of.
@@ -38,6 +38,6 @@ It might be worth asking if art really does need to affect others — to have so
 
 Art, to me, seems to be expressive. This is kind of a tautological point: art needs to express something, even if it does it in somewhat unexpected or roundabout ways; failing to do so would make it not-art. If what you’re making has nothing to express, that’s okay too! And we have a word for it: craft. It’s something made in an exercise of skill, which may even be beautiful and even have a use, but which isn’t judged based on what it says and how it says it. The potters mentioned above could make 50lbs of beautiful, aesthetically pleasing mugs — or 50lbs of beautiful, aesthetically pleasing mugs in an attempt to say something important that they needed to say using pottery. The latter would be judged differently from the former.
 
-Then there’s the reality of making things today. Maybe it didn’t used to be so expensive to live. Maybe it was easier to make art and rent in another century. Now, rent’s expensive. And good art is still rare, so it’s worth wondering how to make it, because you may both get to make great art and survive by doing it. 
+Then there’s the reality of making things today. Maybe it didn’t used to be so expensive to live. Maybe it was easier to make art and rent in another century. Now, rent’s expensive. And good art is still rare, so it’s worth wondering how to make it, because you may both get to make great art and survive by doing it.
 
 The truth is, you will get so few chances to actually make art — so few moments of lucid, non-work time — that you can’t really fuck around with the time you have. And so, be pragmatic. Don't treat creation as an outlet for your status anxiety, or a longshot fantasy of validating your perfectionism. Treat it as a chance to get closer to saying what you must, slowly, and then more clearly.

@@ -4,8 +4,8 @@ layout: post
 permalink: move-really-fast-and-make-things-with-cookiecutter
 ---
 A few weeks ago, after Rdio announced that they’d be closing up shop, I sprang into action to make an app called [Byedio](https://www.byedio.com). It would be an app to painlessly transfer your songs from Rdio to Spotify in one click, and it would have to start doing this soon - before Rdio actually shut down!
-
-But first, I had to re-learn everything about building and deploying Django web apps. Mostly, I build RESTful APIs, so remembering how to deal with templates and CSS and session cookies made me way more stressed than I should have been. Heck, [this bug lost me a whole day](http://stackoverflow.com/questions/33822612/custom-django-authentication-backend-doesnt-log-user-in-first-time-but-works-s). 
+<!--more-->
+But first, I had to re-learn everything about building and deploying Django web apps. Mostly, I build RESTful APIs, so remembering how to deal with templates and CSS and session cookies made me way more stressed than I should have been. Heck, [this bug lost me a whole day](http://stackoverflow.com/questions/33822612/custom-django-authentication-backend-doesnt-log-user-in-first-time-but-works-s).
 
 The worst part was that most of these problems were ones I’d already solved. So, I vowed to never waste another day configuring another Django project. I would make a template that is built on my past work, responsive to my current needs, easy to deploy on Heroku, and full of friendly little reminders about best practices.
 

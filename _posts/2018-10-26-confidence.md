@@ -7,7 +7,7 @@ background_image: IMG_0331.jpeg
 I used to think that confidence emerged from success. That if I pulled off enough, was rewarded and awarded enough, I would finally feel what I'd been missing in my life: a sense that I was enough. If I aimed high enough and got there, I'd find something up there that could give me the inner buoyancy that lets life seem easy, that could keep me afloat above all the things that dragged me down before.
 
 In the course of pursuing that vision of confidence, I started a startup that failed, landed me in a tremendous amount of debt, and left me a little stumped. I had lots to show for it – shit, I did learn how to code after all – but I'd ultimately failed to do the biggest, scariest, hairiest thing I aspired to. After a couple years of tentatively pursuing more startup-shaped things, I decided to drop pretty much all of it. Something didn't seem right about this path, or about the way I was trying to find my path.
-
+<!--more-->
 In hindsight, I was chasing a fantasy. Not just through startups, but in accepting my model of confidence as simply being the experience of finding success and accomplishment. I was chasing a fantasy where what I did could give me what I'd been deprived of and what I was continually depriving myself of: the sense that I was enough.
 
 In hindsight, you can tell it was a fantasy, because I believed that if I just did the right thing, it would obviate all the needs I had and problems I felt before.

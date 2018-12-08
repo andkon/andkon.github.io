@@ -9,7 +9,7 @@ Here's a trick that may work for you too if you're depressed, but which you shou
 It's a trick I learned on vacation after an especially tumultuous period in my life, after I'd already changed a bunch of things I thought were actually responsible for my depression, when I realized that I still wasn't getting much better. It's merely a trick for when things should be moving but aren't, and not a substitute for medication (if you need it) and therapy (which we all need).
 
 I learned how to backflip.
-
+<!--more-->
 Backflips are weird! They're a bit like that "how to draw an owl" picture that has two steps. The second step is "draw the rest of the fucking owl."
 
 The first step of a backflip is to dive into the water backwards off of a ledge a few feet off the ground. You lean back, push your feet off, and arc backwards until your hands meet the water and you slide into it with hardly a splash.

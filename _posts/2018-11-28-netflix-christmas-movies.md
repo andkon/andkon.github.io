@@ -5,7 +5,7 @@ background_image: christmasscreen.png
 ---
 
 I have been sick this whole week, so I watched all the Netflix Christmas movies. Just the Netflix Originals – meaning I didn't get to watch Merry Kissmas, unfortunately. What follows are reviews of those movies, made while I was still sick.
-
+<!--more-->
 ## The Princess Switch
 The Parent Trap but with an engagement swap at the end, but also not as good as Parent Trap. Vanessa Hudgens really was doing her best, but that wasn't quite enough. I think the germ of this movie began on a spinning wheel in a Netflix exec's office, when a dart landed on "romcom" and another dart landed on "baking show."
 

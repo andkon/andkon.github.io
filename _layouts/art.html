@@ -16,8 +16,12 @@ layout: default
       {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
       <span class="post-meta">{{ post.date | date: date_format }}</span>
       {% if post.video_embed %}<iframe class="media" src="{{ post.video_embed }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>{% endif %}
-      {% if post.excerpt %}<p>{{post.excerpt}}</p>{% endif %}
-      <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+      {% if post.content contains site.excerpt_separator %}
+        {{ post.excerpt }}
+        <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+      {% else %}
+        {{ post.content }}
+      {% endif %}
     </div>
   <img src="assets/images/under_con.gif" style="display: block; margin: auto;"></img>
   <img src="assets/images/under_con.gif" style="display: block; margin: auto;"></img>

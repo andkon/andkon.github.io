@@ -8,7 +8,7 @@ shoutout to the guy at my old coworking space who tripled his team size with one
 shoutout to the two other guys who saw these women come in for work, and who immediately posted ads for marketing interns.
 
 shoutout to the guy at my old coworking space who stole my lunch.
-
+<!--more-->
 shoutout to the guy at my old coworking space whose great dietary predilection was in choosing foods that increased his testosterone levels. shoutout to his company, as he was the first person at our coworking space to get on Dragon's Den.
 
 shoutout to the guy who promised a woman founder from the same coworking space that he'd get her app done, took her money, and then did not ship anything, because he was an incompetent charlatan.

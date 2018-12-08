@@ -10,6 +10,7 @@
     <main class="post-content" aria-label="Content">
       <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
         <div class="post-content" itemprop="articleBody">
+          {% if page.video_embed %}<iframe class="media" src="{{ page.video_embed }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>{% endif %}
           {{ content }}
         </div>
         {% if site.disqus.shortname %}
@@ -36,4 +37,3 @@ $('.post-header').css("background-image", "linear-gradient(rgba(255,125,20,0.34)
 </script>
 {% endif %}
 </html>
-

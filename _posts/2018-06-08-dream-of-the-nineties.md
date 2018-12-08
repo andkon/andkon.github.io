@@ -9,7 +9,7 @@ In reading Amanda Palmer's *The Art of Asking*, I was struck by a tiny detail ab
 It's simple, really. It's that she worked as a statue artist and was able to pay her bills. Y'know those ones who wear makeup, dress like the Statue of Liberty or the like, and stand stock still? Occasionally, she'd have a shift or two at a coffee shop, and she lived in a communal house, but still. She paid her own way to live in Boston by busking as a statue artist.
 
 I've busked. A lot. I make $100 on a good day, and at least $50 on a bad one. But as best I could figure, if I went full-time on busking, I'd be able to make about $1500 a month. That would pay for my rent and my car insurance and a box of atulfo mangos; nothing more. My rent is very, very reasonable for a 1-bedroom in Vancouver. Maybe I could find a roommate situation and also be able to afford many more groceries?
-
+<!--more-->
 Amanda Palmer made this work, though. And I guess I'm wondering: how do none of my numbers work, but hers did, and all that's different is that 20 years has passed?
 
 Or consider something else that gave me shivers recently. It's [the first scene of the first episode of Portlandia](https://www.youtube.com/watch?v=mBt4HlcDUDw), where — as an aside throughout a musical number titled "Dream of the 90s" — they recount a world as alien to me as anything in a Marvel film:

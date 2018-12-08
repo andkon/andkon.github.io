@@ -435,10 +435,9 @@ header {
   }
 
   h1 {
-    font-family: "Menlo", "Fira Mono", monospace;
+    font-family: "Noto Sans", sans-serif;
     font-size: 36px;
     color: #FE987B;
-    letter-spacing: -0.085em;
     margin-bottom: 0em;
     margin-top: 0.5em;
   }
@@ -554,6 +553,7 @@ a.read-more {
     text-decoration: none;
     padding-right: 5px;
   }
+  font-size: 20px;
 }
 
 .animate {

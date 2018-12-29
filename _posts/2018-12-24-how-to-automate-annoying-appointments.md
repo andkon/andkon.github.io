@@ -2,6 +2,7 @@
 title: A Christmastime Story About Automating Your Appointments
 subtitle: With Heroku, and Twilio, and Hope for the New Year
 category: writing
+background_image: caleb-woods-485971-unsplash.jpg
 ---
 I'd been trying without much success to get an appointment to put on winter tires at my local Costco. If you get up early enough, you can go wait in line and they'll do it for you, but who wants to get up at 6am? For that, I'll wait until I'm a more elderly Costco patron, with fewer demands upon my time. Fortunately, Costco uses an online scheduling webapp to book appointments, whose API calls I could examine!
 

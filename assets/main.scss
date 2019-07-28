@@ -7,6 +7,7 @@ $grey: #979797;
 $purp: #9012fe;
 $sunset-purp: rgba(144, 18, 254, 0.30980392156862746);
 $peachy-red: #e81c4f;
+$british-racing-green: #3F9A5A;
 
 // Fonts
 $monospace: "Menlo", "Fira Mono", monospace;
@@ -226,31 +227,57 @@ header {
 }
 
 .home-header {
-  /*background-image: url('images/header.png');*/
-  width: 100%;
-  // background-color: $sunset-purp;
-  @include background-2x( 'images/Artboard', 'png', 1239px, 174px, bottom, repeat-x );
-  background-image: url("images/Artboard.png");
+  width: 80%;
   min-height: 10.8em;
+  margin: auto;
   text-align: center;
-  position: relative;
 
-  h1 {
-    margin-top: 0em;
-    margin-bottom: 0em;
-    padding-top: 2em;
-    letter-spacing: -0.05em;
-    font-family: "Menlo", "Fira Mono", monospace;
-    color: white;
-    font-size: 2.0em;
-    font-weight: 300;
-    max-width: 650px;
+  .home-title-container {
     margin: auto;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    padding-top: .5em;
+    display: block;
 
-    // background-image: url('https://web.archive.org/web/20091026063000/http://geocities.com/kuramapeach/island.gif');
-    // background-repeat: no-repeat;
-    // background-position: bottom;
+    h1 {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      letter-spacing: -0.05em;
+      font-family: "Menlo", "Fira Mono", monospace;
+      color: white;
+      font-size: 2.0em;
+      font-weight: 300;
+      max-width: 650px;
+      background-color: $british-racing-green;
+      position: relative;
+
+      &:before {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: -.5rem;
+        left: -0.5rem;
+        background: $purp;
+        content: "";
+        z-index: -1;
+      }
+    }
   }
+
+
+  .buttons {
+    max-width: 800px;
+    margin: auto;
+    .button {
+      padding: .5em 1em;
+      color: white;
+      font-family: $monospace;
+      text-transform: lowercase;
+      font-size: 1.3em;
+    }
+  }
+
 
   h2 {
     margin-top: 0em;
@@ -272,69 +299,6 @@ header {
       content: ' ';
     }
   }
-}
-
-
-.navbar {
-  width: 800px;
-  margin: auto;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  position: fixed;
-
-  a {
-    display: inline-block;
-    width: 20%;
-    padding: 0;
-    position: absolute;
-    top: 0px;
-    text-align: center;
-    height: 3em;
-    line-height: 3em;
-
-    &:hover {
-      background: $peachy-red;
-      color: white;
-    }
-
-  }
-}
-
-.navbar-item {
-  color: white;
-  font-size: 0.6em;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: none 200ms ease-out;
-  transition-property: color, background;
-  padding-top: 2em;
-
-  &:nth-child(1) {
-    background: #FE987B;
-    left: 0%;
-  }
-  &:nth-child(2) {
-    background: #FDA679;
-    left: 20%;
-  }
-  &:nth-child(3) {
-    background: #FEB57A;
-    left: 40%;
-  }
-  &:nth-child(4) {
-    background: #FEC57A;
-    left: 60%;
-  }
-  &:nth-child(5) {
-    background: #FDD378;
-    left: 80%;
-  }
-}
-
-.header-link {
 }
 
 .sticky {
@@ -659,6 +623,67 @@ html a.button {
     }
   }
 
+  &.nav {
+    strong {
+      color: white;
+    }
+
+    &:hover {
+      background: white;
+      &:before {
+        top: 0rem;
+        left: 0rem;
+      }
+    }
+
+    &:before {
+      top: -.5rem;
+      left: -.5rem;
+    }
+
+    &:nth-child(1) {
+      background: #FE987B;
+
+      &:hover {
+        color: #FE987B;
+        background: white;
+      }
+    }
+    &:nth-child(2) {
+      background: #FDA679;
+
+      &:hover {
+        color: #FDA679;
+        background: white;
+      }
+    }
+    &:nth-child(3) {
+      background: #FEB57A;
+
+      &:hover {
+        color: #FEB57A;
+        background: white;
+      }
+    }
+    &:nth-child(4) {
+      background: #FEC57A;
+
+      &:hover {
+        color: #FEC57A;
+        background: white;
+      }
+    }
+    &:nth-child(5) {
+      background: #FDD378;
+
+      &:hover {
+        color: #FDD378;
+        background: white;
+      }
+    }
+
+  }
+
   &.grokwork {
     strong {
       color: #3F9A5A;
@@ -690,6 +715,10 @@ html a.button {
 
     &:hover {
       background: #333;
+      &:before {
+          top: 0;
+          left: 0;
+      }
     }
   }
 
@@ -726,10 +755,19 @@ html a.button {
 
     &:hover {
       background: #333;
+      &:before {
+          top: 0;
+          left: 0;
+      }
     }
   }
 }
 
+nav .buttons {
+  background-color: blue;
+  width: 80%;
+  margin: auto;
+}
 
 .buttons {
   .button {
@@ -804,7 +842,7 @@ html a.button {
 /* Responsiveness */
 
 
-@media (max-width: 1000px) {
+@media (max-width: 1120px) {
   .post-header .logo {
     margin-right: 10px;
     left: 0px;
@@ -817,49 +855,26 @@ html a.button {
     .logo {
       display: none;
     }
+    .buttons {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      .button {
+        flex-grow: 0;
+        margin: 10px;
+      }
+    }
   }
 }
 
 
 @media (max-width: 900px) {
   /*This is where we shrink the post and the nav header */
-  .navbar {
-    left: 0px;
-    top: 2em;
-    width: 200px;
-    display: inline-block;
-    position: absolute;
-    transform: none;
-    margin-right: 3em;
-
-    a {
-      display: inline;
-      position: relative;
-      text-align: left;
-      padding-left: 2em;
-    }
-    .navbar-item {
-      width: 0.05em;
-      height: 3em;
-      clear: both;
-      &:nth-child(n) {
-        // The positioning
-        left: 0px;
-        float: left;
-      }
-    }
-  }
 
   .home-header {
-    h1 {
-      font-size: 1.5em;
-      position: absolute;
-      padding-left: 75px;
-      padding-top: 0em;
-      top: 50%;
-      left: 50%;
-      margin-right: -50%;
-      transform: translate(-50%, -50%)
+
+    .buttons {
+      display: flex;
     }
   }
 
@@ -902,6 +917,14 @@ html a.button {
     display: block;
     margin: auto;
 
+  }
+}
+
+@media (max-width: 800px) {
+  .feedpost {
+    &:before {
+      display: none;
+    }
   }
 }
 

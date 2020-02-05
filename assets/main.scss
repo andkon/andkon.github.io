@@ -387,6 +387,29 @@ header {
     content: "";
     z-index: -1;
   }
+
+  img {
+    max-width: 65%;
+    margin: 1em auto;
+    display: block;
+    position: relative;
+    padding-right: .5rem;
+    border-right: 1px solid $purp;
+    padding-top: .5rem;
+    border-top: 1px solid $british-racing-green;
+  }
+
+  iframe {
+    max-width: 65%;
+    margin: 1em auto;
+    display: block;
+    position: relative;
+    padding-right: .5rem;
+    border-right: 1px solid $purp;
+    padding-top: .5rem;
+    border-top: 1px solid $british-racing-green;
+  }
+
 }
 
 .feedpost {
@@ -396,6 +419,28 @@ header {
   padding: 1em 2em;
   position: relative;
   width: 100%;
+
+  img {
+    max-width: 65%;
+    margin: 2em auto;
+    display: block;
+    position: relative;
+    padding-left: .5rem;
+    border-left: 1px solid $purp;
+    padding-top: .5rem;
+    border-top: 1px solid $british-racing-green;
+  }
+
+  iframe {
+    max-width: 65%;
+    margin: 2em auto;
+    display: block;
+    position: relative;
+    padding-left: .5rem;
+    border-left: 1px solid $purp;
+    padding-top: .5rem;
+    border-top: 1px solid $british-racing-green;
+  }
 
   &:before {
     width: 100%;

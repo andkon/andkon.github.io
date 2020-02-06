@@ -3,7 +3,6 @@ id: "559562DDA04E4F2980661702C27B7097"
 date: "28 Jan, 2020"
 title: "The Vancouver Sound"
 category: writing
-background_image: rhii-photography-o_OCZDIAiM0-unsplash.jpg
 ---
 
 ![](assets/images/8fa621439f17e067829f23133006e6ae.jpeg)

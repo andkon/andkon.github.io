@@ -422,13 +422,12 @@ header {
 
   img {
     max-width: 65%;
+    max-height: 35em;
     margin: 2em auto;
     display: block;
     position: relative;
-    padding-left: .5rem;
-    border-left: 1px solid $purp;
-    padding-top: .5rem;
-    border-top: 1px solid $british-racing-green;
+    padding: 0.5rem;
+    background-color: #ffab68;
   }
 
   iframe {
@@ -436,10 +435,8 @@ header {
     margin: 2em auto;
     display: block;
     position: relative;
-    padding-left: .5rem;
-    border-left: 1px solid $purp;
-    padding-top: .5rem;
-    border-top: 1px solid $british-racing-green;
+    padding: 0.5rem;
+    background-color: #ffab68;
   }
 
   &:before {

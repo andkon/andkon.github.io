@@ -1,6 +1,7 @@
 ---
 title: "You Should Go to Therapy"
 category: writing
+tag: coolio
 ---
 
 ![](assets/images/8IWo4.jpg)

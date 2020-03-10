@@ -5,7 +5,7 @@ title: "The Vancouver Sound"
 category: writing
 ---
 
-![](assets/images/8fa621439f17e067829f23133006e6ae.jpeg)
+![]({{ "assets/images/8fa621439f17e067829f23133006e6ae.jpeg" | absolute_url }})
 
 Sure, it may have been more or less constantly grey and soggy from November to April, but Vancouver really did have some stuff that was special\. For me, during the three years I lived there, it was [this hike up Cypress](https://www.vancouvertrails.com/trails/brothers-creek-loop/), and the electronic music scene\. There’d be shows posted on the regular from Pacific Rhythm and [Vancouver Arts and Leisure](https://leisure.events), and there were plenty of ways in if you wanted to play your own music, or just to dance\.
 

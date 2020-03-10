@@ -4,7 +4,7 @@ category: writing
 tag: coolio
 ---
 
-![](assets/images/8IWo4.jpg)
+![]({{ "assets/images/8IWo4.jpg" | absolute_url}})
 
 Maybe I’m your friend, and I sent you this link\. Maybe you’re someone who doesn’t know me at all\. Whoever you are, you should probably go to therapy\.
 

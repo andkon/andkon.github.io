@@ -901,6 +901,10 @@ nav .buttons {
 
 
 @media (max-width: 1120px) {
+  .post-content iframe {
+    max-height: 500px;
+  }
+
   .post-header .logo {
     margin-right: 10px;
     left: 0px;
@@ -960,6 +964,10 @@ nav .buttons {
       top: -10px;
       left: 0px;
     }
+  }
+
+  .post-content iframe {
+    max-height: 500px;
   }
 
   .media {

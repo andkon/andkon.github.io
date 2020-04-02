@@ -3,7 +3,7 @@ title: "Not every urge to create is a good one"
 subtitle: "The three kinds of creative impulse I know"
 ---
 
-The first is the one you feel when where you feel like you should be making something, and are bummed that you’ve done nothing with it – with your time, your effort, your knowledge that there is something creative in you\. You’re mostly feeling shame at not having made anything, and your main motivation in forcing yourself to make *something, anything* is just to finally quiet that voice of shame\.
+The first is the one where you feel like you should be making something, and are bummed that you’ve done nothing with it – with your time, your effort, your knowledge that there is something creative in you\. You’re mostly feeling shame at not having made anything, and your main motivation in forcing yourself to make *something, anything* is just to finally quiet that voice of shame\.
 
 You might be feeling this a lot in self\-isolation\.
 

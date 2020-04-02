@@ -6,6 +6,7 @@ subtitle: "The three kinds of creative impulse I know"
 The first is the one where you feel like you should be making something, and are bummed that you’ve done nothing with it – with your time, your effort, your knowledge that there is something creative in you\. You’re mostly feeling shame at not having made anything, and your main motivation in forcing yourself to make *something, anything* is just to finally quiet that voice of shame\.
 
 You might be feeling this a lot in self\-isolation\.
+<!--more-->
 
 Let’s say I herald its call, and even succeed in making something\. I usually just end up feeling as hollow as I felt before, and the thing I made feels as hollow too\. How?
 

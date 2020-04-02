@@ -23,12 +23,15 @@
         {{ page.date | date: date_format }}
       </time>
       <br>
-      <span>[
-        {% for tag in page.tags %}
-          {% capture tag_name %}{{ tag }}{% endcapture %}
-          <a href="/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
-        {% endfor %}
-      ]</span>
+      {% capture difference %} {{ page.tags | size | minus:1 }} {% endcapture %}
+      {% unless difference contains '-' %}
+        <span>[
+          {% for tag in page.tags %}
+            {% capture tag_name %}{{ tag }}{% endcapture %}
+            <a href="/{{ tag_name }}"><code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;</a>
+          {% endfor %}
+        ]</span>
+      {% endunless %}
       {% if page.author %}
         • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ page.author }}</span></span>
       {% endif %}</p>

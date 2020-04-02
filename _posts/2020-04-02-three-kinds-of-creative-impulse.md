@@ -9,7 +9,7 @@ You might be feeling this a lot in self\-isolation\.
 
 Let’s say I herald its call, and even succeed in making something\. I usually just end up feeling as hollow as I felt before, and the thing I made feels as hollow too\. How?
 
-Well, if you’re I'm just building something because I feel I have to, how authentic could the end result possibly be? That's how I spent three years trying and trying to be a startup founder.
+Well, if I'm just building something because I feel I have to, how authentic could the end result possibly be? That's how I spent three years trying and trying to be a startup founder.
 
 The only real lesson from this is to just stop trying so damn hard\. Let yourself be quiet and still\. Let yourself ask what you can do with your time to feel okay, to actually feel the thing that all that shame and frustration and effort is trying to cover up\. Let yourself feel that thing, first, before you try to create something new\.
 

@@ -1,12 +1,15 @@
 <footer class="post-footer">
 
   <div class="about">
-    <div class="author-pic"><img src="{{ '/assets/images/the_author.png' | relative_url }}"></div>
-    <h1>about me</h1>
-    <p>I'm just here to write things and post my songs. I live in Toronto with my dog, Enyo.</p>
+    <div class="author-pic"><img src="{{ '/assets/images/the_author.jpeg' | relative_url }}"></div>
+    <h1>about_andrew</h1>
+    <p>I'm a Métis artist working and living in Toronto with my dog, Enyo.</p>
   </div>
 </footer>
-
+<footer class="subscribe-form">
+  <h1>Subscribe:</h1>
+  {% include mailchimp_footer.html %}
+</footer>
 <footer class="post-footer-buttons">
   <nav class="buttons">
     <a class="button" href="{{ site.baseurl }}/">

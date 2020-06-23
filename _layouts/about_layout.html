@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+
+    {% include post_header.html %}
+
+    <main class="post-content" aria-label="Content">
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="post-content" itemprop="articleBody">
+          {% if page.video_embed %}<iframe class="media" src="{{ page.video_embed }}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>{% endif %}
+          {{ content }}
+        </div>
+        {% if site.disqus.shortname %}
+          {% include disqus_comments.html %}
+        {% endif %}
+
+      </article>
+    </main>
+    <footer class="post-footer-buttons">
+      <nav class="buttons">
+        <a class="button" href="{{ site.baseurl }}/">
+          <em>Back to</em>
+          <strong>🍑 the blog</strong>
+        </a>
+      </nav>
+    </footer>
+  </body>
+
+{% if page.background_image %}
+<script type="text/javascript">
+$('.post-header').css("background-image", "linear-gradient(rgba(255,125,20,0.34), rgba(255,125,20,0.34)), url('/assets/images/{{ page.background_image }}')");
+
+</script>
+{% endif %}
+</html>

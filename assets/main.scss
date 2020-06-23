@@ -253,6 +253,11 @@ header {
       background-color: $british-racing-green;
       position: relative;
 
+      em {
+        font-size: 0.7em;
+        text-align: center;
+      }
+
       &:before {
         width: 100%;
         height: 100%;
@@ -397,6 +402,16 @@ header {
     position: relative;
     padding: 0.5rem;
     background-color: #ffab68;
+  }
+  .author {
+    max-width: 35%;
+    min-width: 224px;
+    background-color: #ffab68;
+    text-align: left;
+    float: left;
+    margin-right: 2em;
+    margin-top: 0em;
+    padding: 0em;
   }
 
   iframe {
@@ -572,6 +587,39 @@ footer {
 
 .post-footer-buttons {
   margin: 1em auto;
+}
+
+.subscribe-form {
+  display: block;
+  position: relative;
+  max-width: 20em;
+  margin: 2em auto;
+  background-color: white;
+  padding: 0.5em;
+  &:before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: -.5rem;
+    left: 0.5rem;
+    outline: 1px solid white;
+    z-index: -1;
+    content: "";
+  }
+
+  #mc_embed_signup {
+    padding: 10px 0 10px 0
+
+    input {
+      margin: 0.3em auto;
+      display: block;
+    }
+  }
+
+  h1 {
+    margin-bottom: -0.5em;
+    margin-top: 0;
+  }
 }
 
 .author-pic > img {
@@ -990,6 +1038,15 @@ nav .buttons {
   .feedpost {
     &:before {
       display: none;
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .post {
+    .author {
+      float: none;
+      margin-right: auto;
     }
   }
 }

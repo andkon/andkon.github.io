@@ -36,7 +36,7 @@ There\! I said it\! I’m an artist, and always have been one\. Sure, neither my
 
 And right in there is also the reason I was unable to accept that I wanted to be an artist\. I call it “narcissism,” but really, that was my way of shaming myself into shutting down my awareness of this need to express what I had to express\. It was my way of stopping myself from asking: why am I so incapable of accepting that that’s what I want to do, and then doing it, unfiltered through the needs of a tech startup?
 
-In the place of actual self\-expression, I found myself deeply committed to simulacra: the creation of a tool that could enable self\-expression, but which was devoid of it\. If an app creates a playlist for you, it takes away the choices that you have to make for it to truly be expressive of yourself\. If you create an app for self\-expression, you lose the chance to have spent that time actually expressing yourself\.
+In the place of actual self\-expression, I found myself deeply committed to the simulacra of expression. I made these apps that looked like they'd enable self\-expression, but which were devoid of it – both for users, and for me creating it\. If an app creates a playlist for you, it takes away the choices that you have to make for it to truly be expressive of yourself\. If you create an app for self\-expression, you lose the chance to have spent that time actually expressing yourself\.
 
 That conversation happened six years ago\. I’ve been unpacking the reasons why I was unable to actually accept my calling as an artist ever since\. What would I need so that I could not just say that I’m an artist, but actually allow myself to feel and believe that?
 

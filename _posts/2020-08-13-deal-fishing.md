@@ -159,6 +159,14 @@ var config = {
     }
 };
 
+var pond;
+var pondGroup;
+var player;
+var fishingZone;
+
+var cursors;
+var spacebarHeld = false;
+
 var game = new Phaser.Game(config);
 
 function preload ()
@@ -178,8 +186,7 @@ function update ()
 }
 ```
 
-
-Compared to the barest example we saw above, this `config` contains one extra key: `physics` ! We’ve set gravity to zero, so there won’t be any falling. Instead, we’ll use physics to handle overlaps and collisions between our player and the pond.
+In this skeleton, we create the game object by passing it a `config`, which defines some basic pieces of what our game will contain (such as having `arcade` physics with a `gravity` key with `y` set to `0` – meaning it's a top-scrolling game). We also define the variables we'll be using later on as we load, use, and update our game objects.
 
 And in your `module.html` file, we’ll add a couple lines so that it looks like this:
 
@@ -286,7 +293,7 @@ Each spritesheet and image is passed two parameters. The first is the key we’l
 Now we’re ready to start adding stuff to the map, and we’ll see our first game objects appear.
 
 
-### Creating your scene
+## Creating your scene
 Let’s take those assets and put them to use!
 
 First, we’ll add our main map – the `atlas.png` image, which we’ve given a key of `ground` . Now, in `create()` , we’ll get to use it:
@@ -294,92 +301,33 @@ First, we’ll add our main map – the `atlas.png` image, which we’ve given a
 ```
 function create ()
 {
-	this.add.image(400, 300, 'ground').setScale(2);
-}
-```
-
-
-Here, we’re calling `add.image()` on the scene, and passing it the coordinates, as well as the key of the image we want to add. Here, we want to add our `ground` image to the very middle of the view. And since our Phaser instance was instantiated with a width and height of 800 and 600, and since the origin of the image is at its center by default, we can just divide that original width and height in two to put the `ground` image at the center of the map. Finally, we use `setScale(2)` to double it in size – without that, the image is pretty small for the viewport.
-
-That should show up immediately in your Previewer – but it doesn’t look super great:
-
-![](/assets/images/da1a01944bc7e361acf5b92ed3929aec.png)
-
-There’s so much black space! We’ll fix that by also adding a `tile` template in.
-
-```
-function create ()
-{
 	// this gets called once, after `preload` is finished
 	// anything loaded in `preload` is guaranteed to be accessible here
+
+  // a generic background tile
   this.add.tileSprite(400, 300, 800, 600, "tile");
 
+  // the nicer background
   this.add.image(400, 300, 'ground').setScale(2);
-}
-```
 
-It looks pretty similar to what we did with the image above, but it’s a different method, to reflect that it’s a background tile made from a spritesheet. We also put it first, because if we didn’t, it’d show up on top of our more detailed map. Whatever we add last to the background will show up on top.
+  // let's create the pond we'll fish in
+  pondGroup = this.physics.add.staticGroup();
 
-Finally, we better add an object to our map where we can go fishing: the pond! For that, we’re going to first create a group, and then add a game object to it based on the `pond` spritesheet. That spritesheet has many different states that we can build animations on top of – take a look at it!
+  pond = pondGroup.create(390, 420, 'pond', 0).setScale(2).refreshBody();
 
-![](/assets/images/71eeee10925cb8e1b8b1043f42a03020.png)
+  // create player
+  player = this.physics.add.sprite(100, 450, 'player').setScale(2).refreshBody();
+  player.setCollideWorldBounds(true);
 
-To add the first, left-most image of the pond to the map, we’re first going to create two variables, and add them above where we declare `game` :
+  // create a collider between the player and the pond
+  this.physics.add.collider(player, pondGroup);
 
-```
-var pond;
-var pondGroup;
-
-var game = new Phaser.Game(config);
-```
-
-
-Rather than adding `pond` directly to the scene, we’ll keep it in a `pondGroup` . That’ll help us organize other pond-related game objects in the future.
-
-Now add this to the end of `create()` :
-
-```
-  ...
-	// create pond
-	pondGroup = this.physics.add.staticGroup();
-
-	pond = pondGroup.create(390, 420, 'pond', 0).setScale(2).refreshBody();
-}dGroup.create(390, 420, 'pond', 0).setScale(2).refreshBody();
-}
-```
+  // create a zone to track when the player can fish
+  fishingZone = this.add.zone(pond.x, pond.y, pond.width + 2, pond.height).setScale(2);
+  this.physics.world.enable(fishingZone);
 
 
-That places the pond in a nice open area, chooses the `pond` spritesheet key, and uses the 0 index to grab the first frame from it. Then we use `setScale` to make it bigger, and because it’s a sprite, we also have to call `refreshBody()` to get the scene to re-render it.
-
-Now we’ve got a pond, and a beautiful green 8-bit world. How about we add a player to play with? It’s pretty straightforward, and a lot like adding the pond. First, add a new `player` var at the top, then in `create()` at the bottom, instantiate it:
-
-```
-var pond;
-var pondGroup;
-var player;
-
-var game = new Phaser.Game(config);
-
-...
-
-function create ()
-{
-	...
-	// create player
-	player = this.physics.add.sprite(100, 450, 'player');
-	player.setCollideWorldBounds(true);
-}
-```
-
-
-Beautiful. Here, we’re adding the `player` variable, then using `this.physics.add.sprite()` to add it to the world. This way, the game knows to keep track of the player as an object that physics should apply to – so that we can add collisions to it more easily, thereby allowing it to interact with other objects. We take advantage of Phaser’s physics immediately by using `setCollideWorldBounds(true)` to prevent the player from walking outside of the visible game area.
-
-Now that we’ve got the player, it’s time to add animations and controls so that the player can move around, also at the bottom of `create()` :
-
-```
-function create ()
-{
-	…
+  // player animations
 
   this.anims.create({
     key: 'sideways',
@@ -415,233 +363,9 @@ function create ()
     frameRate: 20,
     repeat: -1
   });
-}
-```
 
 
-When we create an animation, we pass along a `config` map. Usually, it contains a key (so we can keep track of the animation with a descriptive name), the relevant frames from a loaded sprite (either 1 or more),  a frame rate, and how many times the animation should repeat before ending and firing an `animationcomplete` notification.
-
-Now, it’s time to actually move the player around. First, we’ll create a `cursors` variable at the top, then instantiate it at the end of `create()` :
-
-```
-var pond;
-var pondGroup;
-var player;
-
-var cursors;
-
-var game = new Phaser.Game(config);
-
-…
-
-function create ()
-{
-  …
-  cursors = this.input.keyboard.createCursorKeys();
-}
-```
-
-
-Phaser gives us this handy way to watch all the typical keyboard events you might need for your game – arrows, spacebar, and enter are all available through `createCursorKeys()` .
-
-Now we have to use the cursors to move the player around. That’s where `update()` comes in.
-
-While `create()` gets called once, the game loop constantly loops over `update()` in order to run logic that should update the game in real-time. Movement, interactions between objects, and more can all be handled here. In our little game, we’ll be handling both movement and fishing logic in `update()` .
-
-So, here’s what we’ll start out with in `update()` :
-
-```
-function update ()
-{
-  if (player.state != "fishing") {
-    // movement is allowed
-    if (cursors.up.isDown) {
-      player.setVelocity(0, -160);
-
-      player.anims.play('up', true);
-    } else if (cursors.down.isDown) {
-      player.setVelocity(0, 160);
-
-      player.anims.play('down', true);
-    } else if (cursors.left.isDown) {
-      player.setVelocity(-160, 0);
-
-      player.setFlipX(false);
-      player.anims.play('sideways', true);
-    } else if (cursors.right.isDown) {
-      player.setVelocity(160, 0);
-
-      player.setFlipX(true);
-      player.anims.play('sideways', true);
-    } else {
-      // if the above keys are being pressed, the user shouldn't be moving
-      player.setVelocity(0, 0);
-
-      player.anims.pause();
-    }
-  }
-}
-```
-
-
-The first two conditions are about moving up and down, which requires an animation and setting the player’s velocity. The first two conditions help manage left and right running – by setting the velocity of the player, and flipping the same `sideways` animation. And the final `else` clause is to stop animations and set the velocity to zero if you aren’t holding any of the arrow keys.
-
-Also, we’re wrapping this all within a `player.state != "fishing"` condition, which will help make sure that the player can’t move around the map while casting a line.
-
-Head back to your Previewer tab, and check it out – your player moves! But wait. Maybe the hero shouldn’t be able to go right into the pond.
-
-![](/assets/images/5da40364590cb41aae38d972ea9461da.png)
-
-To prevent that, we’ll create a collider between the player and the pond. In `create()` , after you create the pond and the player, you add `this.physics.add.collider(player, pondGroup);` :
-
-```
-function create ()
-{
-	// this gets called once, after `preload` is finished
-	// anything loaded in `preload` is guaranteed to be accessible here
-  this.add.tileSprite(400, 300, 800, 600, "tile");
-
-  this.add.image(400, 300, 'ground').setScale(2);
-
-  // create pond
-  pondGroup = this.physics.add.staticGroup();
-
-  pond = pondGroup.create(390, 420, 'pond', 0).setScale(2).refreshBody();
-
-  // create player
-  player = this.physics.add.sprite(100, 450, 'player').setScale(2).refreshBody();
-  player.setCollideWorldBounds(true);
-
-  this.physics.add.collider(player, pondGroup);
-  …
-}
-```
-Better! This uses the built-in physics engine to notice when the bounds of the player intersect with the bounds of the `pondGroup` to then prevent them from overlapping.
-
-### Interacting with the pond
-If we were so inclined, we could use events to fire a callback when the player collided with the pond, then make fishing automatically begin! But that’s kinda against the spirit of fishing, in my opinion. Half of the fun is casting the reel!
-
-So instead, we’re going to try a different strategy that involves waiting to see when the player is in a zone, and *then* allowing them to cast the reel. We’ll do it all in `update()` to keep things straightforward.
-
-To begin, we’ll create a zone that’s slightly bigger than the pond, and use that to notice when the player is in a fishable area. When the player and the zone are overlapping, we’ll allow the player to cast their lure and catch the big fish.
-
-First, we’ll create a zone variable up top, and then instantiate it inside the `create()` function, after you add the collider to the pond and player:
-
-```
-var pond;
-var pondGroup;
-var player;
-var fishingZone;
-
-var cursors;
-
-var game = new Phaser.Game(config);
-
-…
-
-function create ()
-{
-	// this gets called once, after `preload` is finished
-	// anything loaded in `preload` is guaranteed to be accessible here
-  this.add.tileSprite(400, 300, 800, 600, "tile");
-
-  this.add.image(400, 300, 'ground').setScale(2);
-
-  // create pond
-  pondGroup = this.physics.add.staticGroup();
-
-  pond = pondGroup.create(390, 420, 'pond', 0).setScale(2).refreshBody();
-
-  // create player
-  player = this.physics.add.sprite(100, 450, 'player').setScale(2).refreshBody();
-  player.setCollideWorldBounds(true);
-
-  this.physics.add.collider(player, pondGroup);
-
-  // instantiate and enable physics for the fishing zone
-  fishingZone = this.add.zone(pond.x, pond.y, pond.width + 2, pond.height).setScale(2);
-  this.physics.world.enable(fishingZone);
-
-  …
-}
-```
-
-
-Here, we can see us add the zone to the scene with `this.add.zone()` , including making it slightly wider than the pond. Then we enable physics on the `fishingZone` – that allows us to check for collisions and overlaps.
-
-In this case, we’ll use an overlap. That means some part of one object is within the bounds of another – whereas collisions just mean they bumped up against each other once. Overlaps are better for game logic that needs to happen when a game object stays in a given area – as an angler might!
-
-So where do we check for an overlap? Well, first, let’s take stock. We need to do two things at once: we need to see if there’s overlap, and then see if there’s a spacebar being pressed (which we’ll use to cast the line and begin the fishing).
-
-Here’s what
-1. We could listen for overlap events, and if the overlap event involves the player and the `fishingZone` , we could check if the spacebar is pressed.
-2. We could just put the logic in `update()` , and check if the spacebar is depressed at the same time as there’s also overlap.
-
-Either seems like it could work well! In this tutorial, I’m going to choose option #2, because it’ll play a little more nicely with our controls. If we put the `else if` statement in the right place, it’ll mean we’re only going to look for a spacebar press if the player isn’t also running around the screen – and it’d be a bit weird if the player could run and fish at the same time. Again, we must make a stand for the spirit of the sport.
-
-So we’re going to first create a new `spacebarHeld` variable to keep track of whether the user has released the spacebar, and then add a new set of conditions at the end of `update()`  to handle spacebars and fishing:
-
-```
-function update ()
-{
-  if (player.state != "fishing") {
-    // movement is allowed
-    if (cursors.up.isDown) {
-      player.setVelocity(0, -160);
-
-      player.anims.play('up', true);
-    } else if (cursors.down.isDown) {
-      player.setVelocity(0, 160);
-
-      player.anims.play('down', true);
-    } else if (cursors.left.isDown) {
-      player.setVelocity(-160, 0);
-
-      player.setFlipX(false);
-      player.anims.play('sideways', true);
-    } else if (cursors.right.isDown) {
-      player.setVelocity(160, 0);
-
-      player.setFlipX(true);
-      player.anims.play('sideways', true);
-    } else {
-      // if the above keys are being pressed, the user shouldn't be moving
-      player.setVelocity(0, 0);
-
-      player.anims.pause();
-    }
-  }
-
-  if (cursors.space.isDown && (this.physics.world.overlap(player, fishingZone)) && spacebarHeld === false) {
-    spacebarHeld = true;
-    console.log("Fishing!")
-  } else if (cursors.space.isUp) {
-    spacebarHeld = false;
-    player.anims.pause();
-  }
-}
-```
-
-Wow, we’re close now. When you open your console in the Previewer tab, you should now see `Fishing!` pop up when you press space beside the pond. We’ve added a couple clauses to accomplish that. The first one checks to see if:
-- the player is overlapping the pond zone,
-- the spacebar isn’t already being depressed,
-- and the spacebar is down.
-Then, the second statement handles when the spacebar is finally released, and sets the `spacebarHeld` variable to false, making it so we don’t constantly run the first statement’s logic for as long as the spacebar is depressed.
-
-We’re finally ready to show the fishing animations!
-
-### Fishing
-Now that we’ve got some good, reliable fishing-is-now-happening logic, we can begin to write code to trigger animations and states based on it. First, we’re going to add a few animations for the pond: one at rest, one while waiting for a fish to bite, and one for when a fish has bitten. We’ll then add the logic for what each spacebar press can do: before starting fishing, while fishing and waiting for a bite, and one for when you get a bite and then press spacebar.
-
-We’ll add the animations first in `create()` , with the rest of our animations:
-
-```
-function create ()
-{
-
-  …
-
-  // pond animation
+  // pond animations
   this.anims.create({
     key: 'pondFishing',
     frames: this.anims.generateFrameNumbers('pond', {start: 1, end: 2}),
@@ -657,113 +381,38 @@ function create ()
   });
 
   this.anims.create({
-    key: 'pondBite’,
+    key: 'pondBite',
     frames: this.anims.generateFrameNumbers('pond', {start: 3, end: 4}),
     frameRate: 5,
     repeat: 4
   });
 
-  …
-
+  // create cursors for the pond
+  cursors = this.input.keyboard.createCursorKeys();
 }
 ```
 
+There are three broad sections here. The first is where we set up a few game objects and define how they interact: the player's object, the pond, and the fishing zone. The player and pond are both visible, but the zone isn't – it's an invisible layer that is just a teensy bit bigger than the pond, which we use to check for overlaps later on. We also set up some collisions and physics interactions there.
 
-A couple quick things to note here: the `pondFishing` and `pondStill` animations will run indefinitely (because of the `repeat: -1` key), but `pondBite` will repeat 4 times, for about a second total. We’ll see how that’s useful shortly!
+The second section is where we create a bunch of animations for the player and the pond. That'll help us communicate what's happening to the player. It's one thing to have game logic that works, but without making it obvious through animations, it's not that helpful! Each animation is tied to the above assets that we loaded in `preload()` - we generate an animation from spritesheets we created there. We also give each animation its own `key` so that we can easily use it later on.
 
-Now we’re going to put those animations to use. In `update()` , we’ll add the animation logic to our main fishing condition:
+Also, every animation has a `-1` repeat value, except for the `pondBite` animation. Why is that? Because `-1` means the animation repeats indefinitely, we'll have to manually stop those animations or change the animation to another one. For `pondBite`, we want it to run for a limited amount of time so as to make the game harder. So it repeats 4 times, for a total of about 1 second. After all, fish don't hold on forever.
 
-```
-function update ()
-{
-  …
-  if (cursors.space.isDown && (this.physics.world.overlap(player, fishingZone)) && spacebarHeld === false) {
-    spacebarHeld = true;
-    console.log("Fishing!")
+Finally, we need some way to notice what the player does, so we create inputs using the `cursors` variable.
 
-    if (player.state === "fishing") {
-      // The player is currently fishing
+If you save your `module.js` file now, that should show up immediately in your Previewer – but it's probably boring to play, as we haven't done anything with the inputs yet:
 
-    } else {
-      // The player should begin fishing!
-      player.anims.play('cast', true);
+![](/assets/images/section2.png)
 
-      pond.anims.play('pondFishing');
-    }
+That means we better go and get the player inputs working, as well as trigger specific animations in response to the right inputs.
 
-  } else if ………
-}
-```
-
-
-First, we’re going to use `player.state` to keep track of when the user is fishing. Game objects all have a state property, so we just set it to a string. Then we add some logic around that: if the player is currently fishing, we’ll soon do some other things there to check if they successfully caught the fish. For now, we just want to specify what happens when they press spacebar and aren’t yet fishing.
-
-In that `else` statement, we begin by playing the `cast` animation on the player. It’ll last indefinitely, as we set its `repeat` key to `-1` .
-
-For the pond animations, we’re going to do some trickery. We want the pond to start by playing an animation for when you’re fishing but when the fish hasn’t yet bitten. So, we start by getting the `pond` object to play the `pondFishing` animation. Then, we want the next `pondBite` animation to start randomly so as to add a little element of surprise, and we’ll have to do that in a sneaky way. Here’s what we end up with – including a new function called `finishedFishing()` :
-
-```
-function update ()
-{
-  …
-  if (cursors.space.isDown && (this.physics.world.overlap(player, fishingZone)) && spacebarHeld === false) {
-    spacebarHeld = true;
-    console.log("Fishing!")
-
-    if (player.state === "fishing") {
-      // The player is currently fishing
-
-    } else {
-      // The player should begin fishing!
-      player.anims.play('cast', true);
-
-      pond.anims.play('pondFishing');
-
-      pond.anims.chain('pondBite');
-
-      pond.anims.stopAfterDelay(Phaser.Math.Between(2000,4000));
-
-      pond.on('animationcomplete-pondBite', finishedFishing);
-      pond.anims.chain('pondFishing');
-
-      player.state = "fishing";
-    }
-
-  } else if ……
-}
-
-function finishedFishing (animation, frame, gameObject)
-{
-  if (player.state === 'fishing') {
-    // stop the current animation
-    pond.anims.stopAfterDelay(Phaser.Math.Between(2000,4000)); // random
-
-    // add a new animation
-    pond.anims.chain('pondBite');
-    pond.anims.chain('pondFishing');
-  }
-}
-```
-
-
-
-So, after `pondFishing` gets played, we use `pond.anims.chain` to add the next animation – `pondBite` . Whenever the currently playing animation stops, the animation manager will automatically play the next chained animation. As a result, we add a `stopAfterDelay` call with a random interval. The randomness will add a little surprise, making the game more compelling, and the stop itself will cause the `pondBite` animation to begin playing.
-
-Finally, we’re going to need to keep things going. First, we’ll add a listener for the `pondBite` animation’s ending, which will call `finishedFishing()` . Then we chain `pondFishing` again, which will automatically start once `pondBite` ends. Finally, we make sure to set the player state to `fishing` .
-
-In our `finishedFishing()` function, we do the same thing: stop the current animation, then chain `pondBite` and `pondFishing` once more. Now we have a self-regenerating chain of animations that will continue as long as our player keeps fishing.
-
-Jump in the game and get your player to fish! You should see the following happen: the larger, slower ripples of `pondFishing` are followed within a couple seconds by the fast ripples of `pondBite` , all of which repeats.
-
-But the player can’t catch the fish! Let’s fix that now.
-## Catching the fish
-We’re wrapping things up now. Here’s what our final `update()` function looks like:
+## Handle inputs and trigger animations
 
 ```
 function update ()
 {
   if (player.state != "fishing") {
-    // movement is allowed
+    // movement should be allowed when they're not actively fishing
     if (cursors.up.isDown) {
       player.setVelocity(0, -160);
 
@@ -790,6 +439,7 @@ function update ()
     }
   }
 
+  // the player pressed space while inside the fishing zone, and isn't already holding the spacebar
   if (cursors.space.isDown && (this.physics.world.overlap(player, fishingZone)) && spacebarHeld === false) {
     spacebarHeld = true;
     console.log("Fishing!")
@@ -797,10 +447,11 @@ function update ()
     if (player.state === "fishing") {
       // The player is currently fishing
       if (pond.anims.getCurrentKey() === "pondBite") {
-        // there's a catchable fish!
+        // they pressed space while there was a fish biting
+        // successful catch!
         // first, create a fish object
         fish = this.physics.add.sprite(pond.getCenter().x, pond.getCenter().y, 'fishA', 4).setOrigin(0.5, 0.5).setScale(3).refreshBody();
-        // then animate it up to the top of the player's body
+        // then animate it up to the top of the player's head
         var tween = this.tweens.add({
           targets: fish,
           x: player.getTopCenter().x,
@@ -810,6 +461,8 @@ function update ()
           onComplete: function () {
             fish.destroy();
             player.state = "normal";
+
+            // TODO: POST new fish here
           }
         });
 
@@ -820,7 +473,8 @@ function update ()
         pond.anims.stop();
         pond.anims.play('pondStill');
       } else {
-        // just stop fishing
+        // the player missed the fish bite :(
+        // now to stop fishing
         player.anims.play('sideways', true);
 
         pond.anims.play('pondStill', true);
@@ -848,18 +502,44 @@ function update ()
     spacebarHeld = false;
   }
 }
+
+function finishedFishing (animation, frame, gameObject)
+{
+  if (player.state === 'fishing') {
+    // stop the current animation
+    pond.anims.stopAfterDelay(Phaser.Math.Between(2000,4000)); // random
+
+    // add a new animation
+    pond.anims.chain('pondBite');
+    pond.anims.chain('pondFishing');
+
+  }
+}
+```
+That's it – you've got a working game now!
+
+The game continuously loops and calls the `update()` function. So, that's where we respond to user-initiated input. Here, we have to basic sections. In the first set of conditions, we're just making sure the user isn't already fishing, and handle all the movement-based inputs behind that logic.
+
+In the second set of conditions, we're watching to see when we should get the user to start fishing, catch a fish, and stop fishing if they miss the fish. We create an animation chain that will show a fishing animation, then after a random amount of time will show the `pondBite` animation for a brief moment (remember: it runs for a limited amount of time, unlike the other animations), before returning to the typical fishing animation. In order to keep that going, we also have to create a callback, and so we subscribe to the `animationcomplete-pondBite` event. We get it to call the `finishedFishing()` function, where we then set up this same animation chain all over again if the player missed the opportunity to catch the fish on the first bite.
+
+To keep track of what happens, we check what the `player.state` property is set to, as well as check what animation is playing. That's all it takes to make a game!
+
+### Winning the game
+When the player successfully catches the fish by pressing space when the `pondBite` animation is playing, we create a fish object, then animate it towards the player object using a `tween` object. It’s an object managed by the scene which allows us to manipulate values over time. We use it to change the x and y position of the fish, then pass an `onComplete` callback to destroy the fish and reset the player state to `"normal"` after a delay. Then they can go fish again.
+
+That `onComplete` callback is also where we'll be posting the fish to the Serverless Function that we'll be making shortly. Take note:
+```
+…
+onComplete: function () {
+  fish.destroy();
+  player.state = "normal";
+
+  // TODO: POST new fish here
+}
+…
 ```
 
-
- The new logic is all in the `if (player.state === "fishing")` clause. There, we handle two situations: one, where the `pondBite` animations is playing, which should let the player catch the fish if they press space. The second is if they press space when the `pondBite` animation isn’t playing, in which case fishing should stop, and they’ll have to try again.
-
-To get the fish from the pond to above the player’s head, we use what’s called a ​*tween*​. It’s an object managed by the scene which allows us to manipulate values over time. We use it to change the x and y position of the fish, then pass an `onComplete` callback to destroy the fish and reset the player state to `"normal"` after a delay.
-
-Finally, we change the player’s animation, empty the animation chain for the pond, and set the pond back to `pondStill` .
-
-In the second clause, where the player should stop fishing because they didn’t time the bite correctly, we do more or less the same thing to reset the scene: set the player and pond animations to neutral ones, and set the player state to `"normal"` .
-
-That’s it for now. Enjoy your working game, welcome to the HubSpot Carnival, and happy fishing!
+That's it! If you open up your Previewer tab again, you can move your player around, get them to either side of the pond, and press spacebar to start fishing. Happy fishing, everyone!
 
 ## Introducing Serverless Functions
 ### Posting to HubSpot

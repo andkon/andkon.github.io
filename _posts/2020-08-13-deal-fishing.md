@@ -1,6 +1,6 @@
 ---
 title: Deal Fishing Tutorial
-subtitle: August 21 draft
+subtitle: September 1 draft
 category: writing
 hidden: true
 ---
@@ -8,6 +8,7 @@ hidden: true
 Welcome to the HubSpot Deal Carnival. While you learn how to create a fun, in-browser game using the Phaser.js game framework using skills you’ve already got as a web developer, you’ll also get familiar with the HubSpot platform. In fact, we’re going to use HubSpot’s APIs to make our games work, and HubSpot’s platform will even make it possible for us to deploy our frontends, securely interact with HubSpot APIs, and link our games together into a Vue.js-backed scoreboard.
 
 This is the first tutorial in a series, and it’s all about getting you started and productive (while learning a new trick or two). We’ll get you signed up and familiar with HubSpot’s platform and dev tools, then you’ll build a *Deal Fishing* minigame. Finally, we’ll integrate the game with HubSpot’s `contacts` API by using HubSpot Serverless Functions.
+
 # Getting set up with HubSpot
 ### Sign up for HubSpot
 We’re going to sign up for a HubSpot developer account. That’ll let us have a sandbox to safely explore the APIs, and build our carnival games.
@@ -16,7 +17,12 @@ https://app.hubspot.com/signup/standalone-cms-developer
 Once you’ve got that, we’re ready to get using any HubSpot features. We’ll be using the HubSpot CMS to deploy our games, the HubSpot CLI to develop locally and push our game to HubSpot’s cloud-based CRM, and we’ll use HubSpot Serverless Functions to securely speak to the various APIs we’ll be using.
 
 ## Using the HubSpot CLI
+To get started with the CLI, you can follow the instructions here:
+
+// TODO:
+
 https://developers.hubspot.com/docs/cms/developer-reference/local-development-cms-cli
+
 ### Downloading and configuring it
 To download the HubSpot CLI:
 
@@ -34,7 +40,6 @@ mkdir hubspot-local
 cd hubspot-local
 hs init
 ```
-
 
 You’ll first get a prompt to press Enter to get sent to a website to generate your personal CMS access key. Press enter!
 
@@ -110,53 +115,19 @@ Now save it, and you should see the changes show up immediately in your preview:
 ![](/assets/images/367a07c8427268d1008e3825361d9e0b.png)
 
 Great. Now that we’ve learned how to work locally with the HubSpot CMS, we’re ready to get working with Phaser!
-## Phaser.js and Deal Fishing
-### Phaser.js and game development
-Phaser.js looks a *lot* like other modern JavaScript web frameworks. The simplest Phaser.js example looks like this:
 
-```
-var config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    scene: {
-        preload: preload,
-        create: create,
-        update: update
-    }
-};
+# Creating Deal Fishing
 
-var game = new Phaser.Game(config);
+## Introducing Phaser.js
 
-function preload ()
-{
-	// this gets called once at the very beginning when `game` is instantiated
-}
-
-function create ()
-{
-	// this gets called once, after `preload` is finished
-	// anything loaded in `preload` is guaranteed to be accessible here
-}
-
-function update ()
-{
-	// the game loop calls `update` constantly
-}
-```
-
-
-Most of the time, you create a phaser.js game just by adding the framework via CDN - see the `<script>` tag at the top. That’s probably familiar to you Vue.js developers out there.
-
-And there are a few differences in architecture. Rather than managing elements in the DOM, the most fundamental piece of your game is a ​*game object*​, which the `game` instance keeps track of. If something is part of the game world, it’s probably a game object, and you can add whatever properties you want to those objects in order to keep their state and build the game on top of them. For instance, when your player’s health goes up or down, you would update `player.health` . When it hits `0` , you can decide to kill the player by triggering effects, showing “game over” text, and more.
-
-The Phaser.js framework can handle many things for you, including display and graphics, physics (which includes gravity and collisions), and more – though it’s not as simple as instantiating a game object. We’ll learn how to wire up your game objects so they do what you want them to.
+Phaser.js is a JavaScript game framework that works in any modern browser. It handles many things for you, including display and graphics, physics (which includes gravity and collisions), and more – all by tracking game objects, and passing events between them. We’ll learn how to wire up your game objects so they do what you want them to.
 
 Setup and loading of assets (like sprites, which are images that’ll turn into your characters, or sound effects) is handled in `preload` , and `create` is where you’ll turn those assets into actual game objects. Those two methods are run once, at the creation of the `game` instance.
 
 After that, the game loop continuously calls the `update` function. We can also respond to events emitted by animations, game objects, and more – we just have to subscribe to them and pass them a callback. We’ll learn more about when it’s appropriate to use `update` as opposed to handling changes in an event-driven way with callbacks.
 
-That’s probably enough introduction! What better way to learn how this all works than to just get started?
+That’s probably enough introduction! What better way to learn how this all works than to just get started? We'll walk through `preload`, `create` and `update` in turn.
+
 # Creating the *Deal Fishing* mini game
 First, download the assets we’ll be using from this link:
 
@@ -210,10 +181,11 @@ function update ()
 
 Compared to the barest example we saw above, this `config` contains one extra key: `physics` ! We’ve set gravity to zero, so there won’t be any falling. Instead, we’ll use physics to handle overlaps and collisions between our player and the pond.
 
-And in your `module.html` file, we’ll add one line so that it looks like this:
+And in your `module.html` file, we’ll add a couple lines so that it looks like this:
 
 {% raw %}
 ```
+{{ module.text }}
 {{ require_js('https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js', 'head')}}
 ```
 {% endraw %}
@@ -222,7 +194,16 @@ So far, we’ve loaded Phaser via a CDN. The `require_js` template tag there is 
 
 Now, let’s look back at the live preview. You can treat this window just like you would any tab you were using for local development. You can open up your browser’s Developer Tools and examine the console. Also, you can take a peek at the source of the page to see how the CRM nicely merged your `module.js` code, imported the Phaser.js file, and got things ready.
 
-But right now, there’s not a lot to look at. That’s because we haven’t yet added any assets! So let’s try that out.
+![](/assets/images/fields.png)
+
+Right now, all we can see is the `"Hello, world!"` heading. That's because of our `text` field, which is accessible via the HubL template tag `{{ module.text }}`. If we want to change that to `Deal Fishing`, just click on the field on the left of the Previewer screen:
+
+![](/assets/images/ScreenFlow.gif)
+
+Easy. That whole field is in rich, styled text, so all relevant HTML tags are included with the template tag already.
+
+Otherwise, there’s not a lot to look at. That’s because we haven’t yet added any assets! So let’s try that out in `preload()`.
+
 ## Getting our assets ready to use
 ### Loading your assets
 Phaser loads everything upfront using the `preload()` function. So open up your `module.js` file, and add the following to `preload()` :
@@ -231,22 +212,24 @@ Phaser loads everything upfront using the `preload()` function. So open up your 
 function preload ()
 {
 	// this gets called once at the very beginning when `game` is instantiated
-	this.load.image('ground', '/assets/atlas.png');
-	this.load.spritesheet('pond', '/assets/pond.png', { frameWidth: 54, frameHeight: 39});
-	this.load.spritesheet('tile', '/assets/tile.png', { frameWidth: 16, frameHeight: 16});
+  this.load.image('ground', 'https://f.hubspotusercontent20.net/hubfs/REPLACE_ME/assets/map.png');
+	this.load.spritesheet('pond', 'https://f.hubspotusercontent20.net/hubfs/REPLACE_ME/assets/pond.png', { frameWidth: 54, frameHeight: 39});
+	this.load.spritesheet('tile', 'https://f.hubspotusercontent20.net/hubfs/REPLACE_ME/assets/tile.png', { frameWidth: 16, frameHeight: 16});
 
-	this.load.spritesheet('fishA', '/assets/FishA.png', { frameWidth: 16, frameHeight: 16});
+	this.load.spritesheet('fishA', 'https://f.hubspotusercontent20.net/hubfs/REPLACE_ME/assets/FishA.png', { frameWidth: 16, frameHeight: 16});
 
-	this.load.spritesheet('player', '/assets/hero.png', { frameWidth: 16, frameHeight: 24});
+	this.load.spritesheet('player', 'https://f.hubspotusercontent20.net/hubfs/REPLACE_ME/assets/hero.png', { frameWidth: 16, frameHeight: 24});
 }
 ```
 
 
 It’s pretty straightforward code: we use the `load` instance store on the scene to load an image, and also some spritesheets, which we’ll soon add to our game and make visible.
 
-However, that second parameter (like `‘/assets/atlas.png’` ) refers to local files. For those files to show up in our Previewer, we have to upload them to HubSpot, and paste in their proper URLs.
+However, you still need to upload your assets, and replace the `REPLACE_ME` section of the URL with your own account's unique ID.
 
-Because we’ll be using a mix of images and sound files, we’ll use HubSpot’s File Manager to help us serve the files and make them accessible to our module in the cloud. I’ll show you how to upload from the CLI, and then see those files in the File Manager.
+### Uploading your assets to HubSpot's File Manager
+
+To upload your assets and make them available to your module, we’ll use HubSpot’s File Manager to help us serve the files and make them accessible to our module in the cloud. I’ll show you how to upload from the CLI, and then see those files in the File Manager.
 
 In your terminal, you should be in your root `hubspot-local`  directory, and it should look like this:
 
@@ -255,8 +238,6 @@ deal-fishing.module/
 assets/
 hubspot.config.yml
 ```
-
-
 Now, we’ll just upload the `assets` folder to the File Manager with the following command:
 
 ```
@@ -267,7 +248,9 @@ hs filemanager upload assets assets
 That’ll take our local assets folder and put it in a new top-level folder on the File Manager also called `assets` .
 
 Now, open your sandbox account back up in HubSpot, and open the File Manager from the top navigation bar:
+
 > Marketing > Files and Templates > Files
+
 That’ll show you a screen like this:
 
 ![](/assets/images/9aee802e88e724ff757b3bdceb3c3741.png)
@@ -281,8 +264,8 @@ That should give you a URL like `https://f.hubspotusercontent20.net/hubfs/123456
 ```
 function preload ()
 {
-	// this refers not to the game object - but the scene!
-	this.load.image('ground', 'https://f.hubspotusercontent20.net/hubfs/1234567/assets/atlas.png');
+	// this gets called once at the very beginning when `game` is instantiated
+  this.load.image('ground', 'https://f.hubspotusercontent20.net/hubfs/1234567/assets/map.png');
 	this.load.spritesheet('pond', 'https://f.hubspotusercontent20.net/hubfs/1234567/assets/pond.png', { frameWidth: 54, frameHeight: 39});
 	this.load.spritesheet('tile', 'https://f.hubspotusercontent20.net/hubfs/1234567/assets/tile.png', { frameWidth: 16, frameHeight: 16});
 
@@ -301,6 +284,8 @@ After that, we call the `spritesheet` and `image` methods. What’s the differen
 Each spritesheet and image is passed two parameters. The first is the key we’ll use to refer to the asset in the future – for `atlas.png` , it’s `ground` .
 
 Now we’re ready to start adding stuff to the map, and we’ll see our first game objects appear.
+
+
 ### Creating your scene
 Let’s take those assets and put them to use!
 

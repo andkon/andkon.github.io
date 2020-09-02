@@ -62,8 +62,8 @@ hs create module deal-fishing
 ? What should the module label be? Deal Fishing
 ? What types of content will this module be used in? Page
 ? Is this a global module? No
-Creating ~/Developer/hubspot/hubspot-carnival/deal-fishing.module
-Creating module at ~/Developer/hubspot/hubspot-carnival/deal-fishing.module
+Creating ~/hubspot-local/hubspot-carnival/deal-fishing.module
+Creating module at ~/hubspot-local/hubspot-carnival/deal-fishing.module
 ```
 
 
@@ -88,7 +88,7 @@ hs watch . deal-fishing.module
 ```
 
 
-After `watch` , we’ve got `.` for the source folder that we’re in, and we want it to show up in the HubSpot Design Manager as `deal-fishing.module` .
+After `watch` , we’ve got `.` for the root `hubspot-local` folder that we’re in, and we want it to show up in the HubSpot Design Manager as `deal-fishing.module`.
 
 Let’s go see if it showed up. [Sign into HubSpot with your sandbox account](https://app.hubspot.com/portal-recommend/l?slug=dash), then in the top bar, navigate from Marketing > Files and Template > Design Tools. You’ll see a sidebar that should show your new `deal-fishing` module:
 
@@ -541,5 +541,212 @@ onComplete: function () {
 
 That's it! If you open up your Previewer tab again, you can move your player around, get them to either side of the pond, and press spacebar to start fishing. Happy fishing, everyone!
 
-## Introducing Serverless Functions
-### Posting to HubSpot
+# Introducing Serverless Functions
+
+## Setting up the Serverless Function
+
+```
+hs create function "fishing-deals"
+? Name of the folder where your function will be created: fishing-deals
+? Name of the JavaScript file for your function: post-deals
+? Select the HTTP method for the endpoint: POST
+? Path portion of the URL created for the function: deals
+Created "/Users/konoff/Developer/hubspot/1-deal-fishing/hubspot-components/fishing-deals/..functions"
+Created "/Users/konoff/Developer/hubspot/1-deal-fishing/hubspot-components/fishing-deals/..functions/post-deals.js"
+Created "/Users/konoff/Developer/hubspot/1-deal-fishing/hubspot-components/fishing-deals/..functions/serverless.json"
+[SUCCESS] A function for the endpoint "/_hcms/api/deals" has been created. Upload "..functions" to try it out
+```
+
+Now, we'll go into the `fishing-deals/fishing-deals.function` folder, and open up `post-deals.js`. That's where our function lives. Every time we get a call to `_hcms/api/deals`, it runs the code in here. At the beginning, it just looks like this:
+
+```
+exports.main = ({ accountId, body, params }, sendResponse) => {
+  console.log('Your HubSpot account ID: %i', accountId);
+  sendResponse({
+    statusCode: 200,
+    body: {
+      message: 'Hello, world!',
+    },
+  });
+};
+```
+
+We're going to make a few changes: we'll create a random name for the fish, give it a score, post it to the HubSpot CRM (which we'll use as our datastore), and return a 201 instead of a 200, as well as the score and name.
+
+### Add your API key
+Before all that, let's get your API key added to your CLI, then safely bundled into your Serverless Function.
+
+First, head to your [Account Settings](https://app.hubspot.com/portal-recommend/l?slug=api-key/) to grab your API key. Make sure you select the appropriate sandbox account. You may have to create an API key if you haven't before, then copy it.
+
+Now, in your terminal, we'll add the secret to the HubSpot CLI, which in turn makes it available in your cloud environment:
+```
+hs secrets add hubapikey YOUR_API_KEY
+The secret "hubapikey" was added to the HubSpot portal: 8311725
+```
+Now, open up the `serverless.json` file in your function folder. We'll add the name of the secret there, inside the `secrets` array:
+```
+{
+  "runtime": "nodejs12.x",
+  "version": "1.0",
+  "environment": {},
+  "secrets": ["hubapikey"],
+  "endpoints": {
+    "deals": {
+      "method": "POST",
+      "file": "post-deals.js"
+    }
+  }
+}
+```
+That's all we need to do to make `hubapikey` available in the function as an environment variable.
+
+Back to the `post-deals.js` file, we'll set it up to create a new contact each time you catch a fish:
+
+```
+var request = require("request");
+
+var fishNames = ["Nemo",  "Bubbles",  "Jack",  "Captain",  "Finley",  "Blue",  "Moby",  "Bubba",  "Squirt",  "Shadow",  "Goldie",  "Dory",  "Ariel",  "Angel",  "Minnie",  "Jewel",  "Nessie",  "Penny",  "Crystal",  "Coral"]
+var colors = ["White", "Yellow", "Blue", "Red", "Green", "Black", "Brown", "Azure", "Ivory", "Teal", "Silver", "Purple", "Navy", "PeaGreen", "Gray", "Orange", "Maroon", "Charcoal", "Aquamarine", "Coral", "Fuchsia", "Wheat", "Lime", "Crimson", "Khaki", "HotPink", "Magenta", "Olden", "Plum", "Olive", "Cyan"]
+
+exports.main = ({ accountId, body, params }, sendResponse) => {
+  console.log('Your HubSpot account ID: %i', accountId);
+  console.log('Your fish size: ' + body.fish_size);
+
+  var firstName = fishNames[Math.floor(Math.random() * fishNames.length)];
+  var lastName = ("Mc" + colors[Math.floor(Math.random() * colors.length)]);
+
+  console.log("The API key: " + process.env.hubapikey);
+
+  var options = {
+    method: 'POST',
+    url: 'https://api.hubapi.com/crm/v3/objects/contacts',
+    qs: {hapikey: process.env.hubapikey},
+    headers: {accept: 'application/json', 'content-type': 'application/json'},
+    body: {
+      properties: {
+        firstname: firstName,
+        lastname: lastName,
+        annualrevenue: body.fish_size
+      }
+    },
+    json: true
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log("The " + firstName + " " + lastName + " contact was successfully created");
+
+    sendResponse({
+      statusCode: 201,
+      body: {
+        fish_name: (firstName + ' ' + lastName),
+        score: body.properties.annualrevenue,
+        message: ('Your fish is named ' + firstName + ' ' + lastName)
+      },
+    });
+  });
+};
+```
+
+From the top to the bottom, let's walk through how our function works.
+
+First, we import `request` using `require()`. That'll let us make a POST request to the HubSpot `/contacts` API, [which you can read more about here](https://developers.hubspot.com/docs/api/crm/contacts). Then we create a couple arrays to make some creative fish names.
+
+Inside the `exports.main` method, we first log a couple helpful things, which we'll be able to see in the logs. Then we create a first and last name, and add those to a request. Finally, we handle the request. If there's no error, we use `sendResponse()` to send the saved fish name, score, and a helpful message back to the client.
+
+Now we're going to get a webpage going, so that we can test out the Serverless Function, and share our new working game.
+
+# Testing and publishing your game
+
+## Creating a Template
+
+Templates allow you to combine as many modules as you'd like into a
+
+Head back to your root `hubspot-local` folder, and create a new template in the CLI:
+```
+hs create template deal-fishing-demo
+? Select the type of template to create: page
+Creating file at ~/hubspot-local/deal-fishing-demo.html
+```
+That creates a simple `deal-fishing-demo.html` file. Open it up – you'll see there's already a special comment at the top indicating that it's a template. Next, replace the template's HTML with this:
+{% raw %}
+```
+<!--
+    templateType: page
+    label: Deal Fishing template
+    isAvailableForNewContent: true
+-->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ content.html_title }}</title>
+    <meta name="description" content="{{ content.meta_description }}">
+    {{ standard_header_includes }}
+  </head>
+  <body>
+    {% module "module_YOURMODULENUMBER" path="/deal-fishing-tutorial", label="deal-fishing-tutorial" %}
+    {{ standard_footer_includes }}
+  </body>
+</html>
+```
+{% endraw %}
+We changed the `label` up top to be something easier to find, but the important line here is the first line in `<body>`. You'll have to grab your module's unique ID back in the Design Manager – just open the `deal-fishing` module in there, and scroll down to the bottom of the sidebar to copy a module template snippet:
+
+![](/assets/images/sidebar.png)
+
+Alternatively, if you have your Previewer tab open, you can just replace the `module_YOURMODULENUMBER` part of the template code with the final part of your Previewer's URL. My URL is `https://app.hubspot.com/design-previewer/1234567/modules/34070159116`, so I'd change that to `module_34070159116`.
+
+Now, we'll create a new page using the template you just made. In the top bar, go to `Marketing > Website > Website Pages`, and press `Create` in the top right corner, then select `Website page`.
+
+With the search bar in the top right, let's search for "Deal Fishing template" and select that template. Finally, give it a name – maybe `Deal Fishing Game`. Click `Create Page`, then we're nearly done.
+
+But it won't let us press publish yet. You'll need to head to the Settings bar and do two things there. First, add a Page Title. Then copy the link to the page. Finally, press Publish, and open up your brand new page:
+
+![](/assets/images/publish.gif)
+
+From the page link we just copied, we're only going to copy the subdomain part of that URL:
+```
+http://yoursandboxusername-1234567.hs-sites.com
+```
+In this case, it'd be `yoursandboxusername-1234567`. That's all we need to be able to call our Serverless Function from within the app. Keep that tab around just so we can test it.
+
+## Putting it all together
+It's time to put it all together by calling the function in our game's code. Head back to your `module.js` inside the `deal-fishing.module` folder, and find the comment called `// POST new fish here`, inside the `update()` function. There, you should add this code:
+```
+// POST new fish here
+fetch("http://YOUR_SITE_SUBDOMAIN.hs-sites.com/_hcms/api/deals", {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ fish_size: Phaser.Math.Between(75, 250)})
+}).then(res => {
+  return res.json()
+}).then(data => {
+  console.log(data);
+});
+```
+Replace the `YOUR_SITE_SUBDOMAIN` with the page, save your changes, and refresh the new `hs-sites.com` page you created. If you open up your console in that tab, you'll see something like this:
+
+![](/assets/images/console.png)
+
+Finally, you can check your logs using the CLI. Just pass it the name of your serverless function – `fishing-deals`, in this case:
+```
+hs logs fishing-deals
+2020-09-02T23:02:25.861Z - SUCCESS - Execution Time: 1853ms
+{ body:
+   { score: '200',
+     message: 'Your fish is named Squirt McYellow',
+     fish_name: 'Squirt McYellow' },
+  statusCode: 201 }
+2020-09-02T23:02:26.758Z	INFO	Your HubSpot account ID: 8311725
+2020-09-02T23:02:26.765Z	INFO	Your fish size: 197
+2020-09-02T23:02:26.765Z	INFO	The API key: YOUR_API_KEY
+2020-09-02T23:02:27.686Z	INFO	The Squirt McYellow contact was successfully created
+```
+
+That's it! In a coming tutorial, we'll learn how to create scoreboard that'll add up all our contacts `annualrevenue` property values to give us our high score for the day. For now, just enjoy the great outdoors and the HubSpot Carnival.
+
+https://knowledge.hubspot.com/contacts/hubspots-default-contact-properties?_ga=2.230543132.1282486909.1598903654-1418744260.1597871852

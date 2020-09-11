@@ -716,7 +716,7 @@ In this case, it'd be `yoursandboxusername-1234567`. That's all we need to be ab
 It's time to put it all together by calling the function in our game's code. Head back to your `module.js` inside the `deal-fishing.module` folder, and find the comment called `// POST new fish here`, inside the `update()` function. There, you should add this code:
 ```
 // POST new fish here
-fetch("http://YOUR_SITE_SUBDOMAIN.hs-sites.com/_hcms/api/deals", {
+fetch("//YOUR_SITE_SUBDOMAIN.hs-sites.com/_hcms/api/deals", {
   method: "POST",
   headers: {
     'Content-Type': 'application/json'

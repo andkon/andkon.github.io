@@ -41,12 +41,17 @@ With our initial module and template set up, we're going to head to the Design M
 
 ![](/assets/images/sidebar.png)
 
+{% raw %}
 Now, we'll open up the `game` module in there, and scroll down on the right sidebar until we can copy the "Usage snippet.""
+{% endraw %}
 
 ![](/assets/images/gamesnippet.png)
 
+{% raw %}
 Now, head to your template file back in your text editor, or open it up in the Design Manager (though the changes you make won't show up back on your computer). Replace the `{% module %}` tag in the first line of `<body>` with your own:
+{% endraw %}
 
+{% raw %}
 ```
 <!--
     templateType: page
@@ -67,6 +72,7 @@ Now, head to your template file back in your text editor, or open it up in the D
   </body>
 </html>
 ```
+{% endraw %}
 
 Finally, we'll create a page based on the template, where we'll do the rest of our game and function development. In the top bar of HubSpot, go to `Marketing > Website > Website Pages`, and press `Create` in the top right corner, then select `Website page`.
 
@@ -91,11 +97,13 @@ Now, we're ready to get the game going!
 
 Compared to our last game, we've got some very straightforward work on the game itself. But before we start on that, we've got a couple changes to make to the other files in the module. To begin, let's head to `module.html` and make some changes there:
 
+{% raw %}
 ```
 <!-- module html  -->
 {{ module.text }}
 {{ require_js("https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser.min.js", "head")}}
 ```
+{% endraw %}
 
 And then in `module.css`, let's import a cool Western-style font:
 

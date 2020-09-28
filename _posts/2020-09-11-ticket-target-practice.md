@@ -670,8 +670,6 @@ function createHighScoreTicket(name, pipeline, sendResponse)
     request(options, function (error, response, body) {
       if (error) throw new Error(error);
 
-      console.log(body);
-
       var subjectObject = JSON.parse(body.properties.subject);
 
       // return the score
@@ -687,6 +685,9 @@ function createHighScoreTicket(name, pipeline, sendResponse)
   });
 }
 ```
+Here, we have to do a little more heavy lifting. First, we search for all of the tickets that tracked the scores in individual levels, which are all in the first stage of the pipeline. Then we sum them up, and create a new ticket, where we put the stringified JSON of the score and the user's name as the ticket's `subject` - which will come in handy in our next tutorial when we want to display the high scores. Finally, we send a response where we inform the user that it truly is game over, and show them their high score.
 
+That's it! You should be able to keep playing until you miss all the targets in the level. At that point, you'll see this message:
+![](/assets/images/gameover.png)
 
-From there, in `update-game/update-game.functions/update.js`, we have two jobs. If the
+Hopefully you'll get a higher score than I did.

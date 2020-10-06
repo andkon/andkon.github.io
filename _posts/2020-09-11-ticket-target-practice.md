@@ -435,9 +435,6 @@ Next, we're going to add `createPipeline()` and `removeOldTickets()`, where we c
 
 function removeOldTickets(pipeline, sendResponse)
 {
-  /* https://www.npmjs.com/package/@hubspot/api-client */
-  var request = require("request");
-
   var options = {
     method: 'POST',
     url: 'https://api.hubapi.com/crm/v3/objects/tickets/search',
@@ -464,7 +461,6 @@ function removeOldTickets(pipeline, sendResponse)
     if (error) throw new Error(error);
 
     console.log(body);
-    var request = require("request");
 
     var ids = [];
 
@@ -629,8 +625,6 @@ function createTicket(score, level, config, pipeline, sendResponse) {
 ```
 function createHighScoreTicket(name, pipeline, sendResponse)
 {
-  var request = require("request");
-
   // first, search for the tickets for each level's score
   var options = {
     method: 'POST',
@@ -699,3 +693,7 @@ That's it! You should be able to keep playing until you miss all the targets in 
 ![](/assets/images/gameover.png)
 
 Hopefully you'll get a higher score than I did.
+
+# Conclusion
+
+That's all for now. We created a frontend game using Phaser.js and embedded it in a module, then published it using a template. Then, we handled the backend by creating two serverless functions to begin and update the game as we played it. The result: all the carnival game fun we could hope for.

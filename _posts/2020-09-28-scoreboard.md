@@ -123,7 +123,12 @@ Leave `yarn start` running, and we'll begin developing our app. Let's walk throu
           </tr>
         </thead>
         <tbody>
-          <tr v-if="loading">
+          <tr v-if="error">
+            <td></td>
+            <td>Error: {{ error }}</td>
+            <td></td>
+          </tr>
+          <tr v-else-if="loading">
             <td></td>
             <td>Loading…</td>
             <td></td>

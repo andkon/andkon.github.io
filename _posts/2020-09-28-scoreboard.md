@@ -9,7 +9,7 @@ Carnivals are all fun and games, but it also helps to win something. In this tut
 # Prerequisites
 
 * a completed Ticket Target Practice app with some high scores
-* HubSpot CLI
+* HubSpot CLI, v2.0+
 
 # Getting setup
 
@@ -36,6 +36,7 @@ hs create template scoreboard-page
 
 Now we can open up the resulting `scoreboard-page.html` file, and replace its contents with the following:
 
+{% raw %}
 ```
 <!--
     templateType: page
@@ -56,6 +57,7 @@ Now we can open up the resulting `scoreboard-page.html` file, and replace its co
   </body>
 </html>
 ```
+{% endraw %}
 It's a pretty straightforward template. In the frontmatter, we set the Label to `Scoreboard template` so it's easy to search for. Then in the body, we include the module we're going to create containing our Vue app – the `cms_vue_boilerplate` module. The path is absolute – it begins from the home directory of our Design Manager.
 
 ## Create a page from the template
@@ -105,6 +107,7 @@ With `yarn start`, you should see a lot of output from the build logs, ending wi
 
 Leave `yarn start` running, and we'll begin developing our app. Let's walk through it before diving in. The code we'll be working on all lives in `/src`. There, we'll open up `App.vue`. Replace the code there with this `<template>`:
 
+{% raw %}
 ```
 <template>
   <div class="cms-vue-boilerplate-container">
@@ -136,6 +139,7 @@ Leave `yarn start` running, and we'll begin developing our app. Let's walk throu
   </div>
 </template>
 ```
+{% endraw %}
 
 We'll use a table to show what's happening. If `loading` is true, we'll show a loading message in the table. Otherwise, we'll create a row for each score object in `sortedScores`, showing their rank, name, and score.
 

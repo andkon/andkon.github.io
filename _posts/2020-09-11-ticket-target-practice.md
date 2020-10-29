@@ -6,21 +6,36 @@ hidden: true
 ---
 In our second tutorial for the HubSpot Carnival, we're going to make a simple target shooting game that tracks your score and saves your name and high score – with the help of HubSpot's Serverless Functions. At the end of this tutorial, you'll have a game deployed on HubSpot with persistent scores backed by the Ticket and Pipeline APIs.
 
+# Prerequisites
+
+* HubSpot CLI, v2.0+
+* The game assets, downloadable here // TODO
+
 # How it works
 
-There are three pieces we'll be working on. First, the frontend is where the game runs, using the Phaser.js game framework. Then we've got a `start_game` Serverless Function, which kicks things off. Finally, we've got a `update_game` Serverless Function, which keeps track of scores and saves your high score.
+There are three pieces we'll be working on:
 
-When you start the game, we get the configuration for the targets as well as some other important info from the `/start_game` endpoint. Then, every time you hit a target, it knocks it down. When you finish a level, it'll post to the `/update_game` endpoint, where your score for the level is saved to a ticket, and a new level's config is returned. Finally, we post `game_over` to the same endpoint to save the high score.
+* The frontend Phaser.js game.
+* The `start_game` serverless function, which configures the game.
+* The `update_game` serverless function, which keeps track of scores and saves your high score when it's game over.
+
+When you start the game, we get the configuration for the targets as well as some other important info from the `start_game` function. Then, every time you hit a target, we'll track that in the frontend game, and then communicate your totals to `update_game` to get a new level configuration, as well as to save that level's score using a ticket. Finally, we post `game_over` to the same endpoint to save the high score.
 
 # The game
 
 ## Initial setup
-First, head to the root folder where you had your CLI setup from the last tutorial. We'll make a new folder in there, then do all our work inside it.
+First, head to the root folder where you had your CLI setup from the last tutorial. We'll make a new `ticket-target-practice` folder in there, then do all our work inside it.
 
-First, we'll make our module:
+First, we'll create the folder, and download and unzip our assets there, before uploading them.
+
 ```
 mkdir ticket-target-practice
 cd ticket-target-practice
+open .
+```
+
+
+```
 hs create module game
 ? What should the module label be? Ticket Target Practice
 ? What types of content will this module be used in? Page
@@ -116,6 +131,12 @@ h1 {
 ```
 
 At this point, you can refresh the game page and you should see a `"Hello, world!"` header show up.
+
+## Uploading the assets
+
+Before getting to work on the game itself, let's upload our `/assets` folder to make the necessary game assets available to our Phaser.js game.
+
+
 
 ## Creating the game
 

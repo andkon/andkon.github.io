@@ -167,6 +167,11 @@ var fishingZone;
 var cursors;
 var spacebarHeld = false;
 
+var score = 0;
+var scoreText;
+
+var fishText;
+
 var game = new Phaser.Game(config);
 
 function preload ()
@@ -309,6 +314,11 @@ function create ()
 
   // the nicer background
   this.add.image(400, 300, 'ground').setScale(2);
+
+  // the on-screen text for scores and fish info
+  scoreText = this.add.text(700, 550, "Score: 0", { align: 'right', fontFamily: 'Helvetica', color: 'black' });
+  fishText = this.add.text(400, 50, "Welcome to Deal Fishing!", { align: 'center', fontFamily: 'Helvetica', color: 'black' });
+  fishText.setOrigin(0.5);
 
   // let's create the pond we'll fish in
   pondGroup = this.physics.add.staticGroup();
@@ -726,6 +736,23 @@ fetch("//YOUR_SITE_SUBDOMAIN.hs-sites.com/_hcms/api/deals", {
   return res.json()
 }).then(data => {
   console.log(data);
+
+  // update the score
+  score += data.score;
+  scoreText.setText("Score: " + score);
+
+  // create a message about the fish you caught
+  var fishSize = data.score;
+
+  var fishMessage;
+  if (fishSize > 200) {
+    fishMessage = "You caught a huge fish!";
+  } else if (fishSize > 100) {
+    fishMessage = "You caught a very medium fish!";
+  } else {
+    fishMessage = "You caught a tiny little fish!";
+  }
+  fishText.setText(fishMessage + "\n" + data.message + ".");
 });
 ```
 Replace the `YOUR_SITE_SUBDOMAIN` with the page, save your changes, and refresh the new `hs-sites.com` page you created. If you open up your console in that tab, you'll see something like this:

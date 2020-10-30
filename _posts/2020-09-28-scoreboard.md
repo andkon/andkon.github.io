@@ -297,8 +297,8 @@ Alright, now we can get things going. First, in `serverless.json`, we have to ad
 
 Then, let's open up `highscore.js`, where we'll create a request for the pipelines on our account, and then get the tickets on its second stage before responding with them:
 ```
-// Require axios library to make API requests
-const axios = require('axios');
+const hubspot = require('@hubspot/api-client');
+const hubspotClient = new hubspot.Client({ apiKey: process.env.hubapikey});
 
 // This function is executed when a request is made to the endpoint associated with this file in the serverless.json file
 exports.main = ({ accountId }, sendResponse) => {
@@ -306,14 +306,11 @@ exports.main = ({ accountId }, sendResponse) => {
     hapikey: process.env.hubapikey
   };
 
-  // Use axios to make a GET request to the search API
-  axios
-    .get('https://api.hubapi.com/crm/v3/pipelines/tickets', {
-      params: defaultParams
-    })
-    .then(function(response) {
+  // call the HubSpot Pipelines API using the api-client
+  hubspotClient.crm.pipelines.pipelinesApi.getAll('tickets', archived=false)
+    .then(results => {
       // Handle success
-      pipeline = response.data.results.find(obj => obj.label === "Ticket Target Practice Game");
+      pipeline = results.body.results.find(obj => obj.label === "Ticket Target Practice Game");
 
       if (pipeline == null) {
         sendResponse({ body: "No pipeline found", statusCode: 400});
@@ -321,8 +318,7 @@ exports.main = ({ accountId }, sendResponse) => {
       }
 
       // now let's search for the high score tickets on that pipeline
-      axios
-      .post('https://api.hubapi.com/crm/v3/objects/tickets/search', {
+      const publicObjectSearchRequest = {
         filterGroups: [
           {
             filters:
@@ -332,39 +328,45 @@ exports.main = ({ accountId }, sendResponse) => {
             ]
           }
         ],
-        sorts: ['createdate'],
+        sorts: [
+          {
+            "propertyName": "createdate",
+            "direction": "DESCENDING"
+          }
+        ],
         properties: ['id', 'subject'],
         limit: 100,
-        json: true
-      }, {
-        params: defaultParams,
-        headers: {accept: 'application/json', 'content-type': 'application/json'}
-      })
-      .then(function(response) {
-        // success!
-        tickets = response.data.results;
-        sendResponse({ body: tickets });
-      }).catch(function(error) {
-        console.log(error.message);
+      };
 
-        sendResponse({ body: { error: "The search for tickets failed: " + error.message }, statusCode: 500 });
-      });
+      hubspotClient.crm.tickets.searchApi.doSearch(publicObjectSearchRequest)
+        .then(results => {
+          // success!
+          tickets = results.body.results;
+          sendResponse({ body: tickets });
+        }).catch(err => {
+          console.log(error.message);
+
+          sendResponse({ body: { error: "The search for tickets failed: " + error.message }, statusCode: 500 });
+        });
     })
-    .catch(function(error) {
+    .catch(err => {
       // Handle error
       console.log(error.message);
 
-      // This is a simple example; error handling typically will be more complicated.
-      // For more information on error handling with axios, see: https://github.com/axios/axios#handling-errors
       sendResponse({ body: { error: "Getting pipelines failed: " + error.message }, statusCode: 500 });
     });
 };
 ```
+At the top, we create a request to the `pipelines.pipelinesApi.getAll` endpoint, which will return all our pipelines on the account. We handle the successful response in `.then()`, where we look for the pipeline object called `"Ticket Target Practice Game"`. If it's not there, we'll return a 400.
 
-At the top, we create a GET request to the `/pipeline/tickets` endpoint, which will return all our pipelines on the account. We handle the successful response in `.then()`, where we look for the pipeline object called `"Ticket Target Practice Game"`, and then save it. If it's not there, we'll return a 400.
-
-If the pipeline is there, we can then queue up a POST request to search for tickets that are in the appropriate stage for high scores. If that returns something, we'll craft a `sendResponse()` call to return the tickets.
+If the pipeline is there, we can then craft a search for tickets that are in the appropriate stage for high scores, which we do using `publicObjectSearchRequest`. We fire that off to the `tickets.searchApi.doSearch` endpoint; if that returns something, we'll craft a `sendResponse()` call to return the tickets to our scoreboard app, which will then handle displaying and ordering the data.
 
 With `hs watch` running, the endpoint should be ready to go. And because our Vue app lives on the same domain as our `_hcms/api/high_scores` endpoint, we don't have to update anything in the Vue app's call to the endpoint – we're already calling its relative path. Just refresh, and you should see your scores show up!
 
 ![](/assets/images/scoreboard.png)
+
+# Conclusion
+
+That's it! With these three Carnival tutorials, you've seen how quick and effective HubSpot's developer tools are at building useful (or sometimes just fun) webapps. Maybe you've even picked up a couple new skills along the way.
+
+Next, it's up to you. Maybe you'd like to be able to customize the player name with a custom form? Or do you want to create your own Vue app or Phaser game backed by the HubSpot API? Let us know what you build using the #hubspotcarnival and tagging @hubspot, wherever hashtags can be used.

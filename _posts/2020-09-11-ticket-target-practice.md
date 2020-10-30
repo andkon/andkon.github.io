@@ -365,27 +365,26 @@ That's it for the client-side game! But if you refresh your page, you'll notice 
 # The functions
 
 ## Initial setup
-Head back to your terminal and make sure you're in the `ticket-target-practice` folder. We're going to create the two functions here, using the HubSpot CLI.
+Head back to your terminal and make sure you're in the `ticket-target-practice` folder. We're going to create the two functions here, using the `hs create function` from the HubSpot CLI.
 ```
-hs create function start-game
-? Name of the folder where your function will be created start-game
-? Name of the JavaScript file for your function start.js
-? Select the HTTP method for the endpoint GET
-? Path portion of the URL created for the function start_game
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/start-game/start-game.functions"
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/start-game/start-game.functions/start.js"
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/start-game/start-game.functions/serverless.json"
-[SUCCESS] A function for the endpoint "/_hcms/api/start_game" has been created. Upload "start-game.functions" to try it out
+hs create function
+? Name of the folder where your function will be created: ticket-functions
+? Name of the JavaScript file for your function: start.js
+? Select the HTTP method for the endpoint: GET
+? Path portion of the URL created for the function: start_game
+Created "~/Developer/hubspot/ticket-target-practice/ticket-functions.functions"
+Created "~/Developer/hubspot/ticket-target-practice/ticket-functions.functions/start.js"
+Created "~/Developer/hubspot/ticket-target-practice/ticket-functions.functions/serverless.json"
+[SUCCESS] A function for the endpoint "/_hcms/api/start_game" has been created. Upload "ticket-functions.functions" to try it out
 
-hs create function update-game
-? Name of the folder where your function will be created update-game
-? Name of the JavaScript file for your function update.js
-? Select the HTTP method for the endpoint POST
-? Path portion of the URL created for the function update_game
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/update-game/update-game.functions"
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/update-game/update-game.functions/update.js"
-Created "/Users/konoff/Developer/hubspot/2-tickets/hubspot-components/update-game/update-game.functions/serverless.json"
-[SUCCESS] A function for the endpoint "/_hcms/api/update_game" has been created. Upload "update-game.functions" to try it out
+hs create function
+? Name of the folder where your function will be created: ticket-functions
+? Name of the JavaScript file for your function: update.js
+? Select the HTTP method for the endpoint: POST
+? Path portion of the URL created for the function: update_game
+The "~/Developer/hubspot/ticket-target-practice/ticket-functions.functions" path already exists
+Created "~/Developer/hubspot/ticket-target-practice/ticket-functions.functions/update.js"
+[SUCCESS] A function for the endpoint "/_hcms/api/update_game" has been created. Upload "ticket-functions.functions" to try it out
 ```
 
 Neat! Now, in each function's `serverless.json` config file, let's add our HubSpot API key. Note: make sure you've added the API key to the CLI already, as we covered in the last tutorial.
@@ -413,38 +412,34 @@ Let's get started.
 
 ## Working on `start_game`
 
-If it's the first time you've run the game, we're going to create a pipeline, then return it along with a config. If that pipeline's already around (which we know because pipelines have a unique label, and we can search for it), we'll return it and a config that can create the targets, but we will also delete any existing tickets in the first "Current Game Hits" stage.
+If it's the first time you've run the game, we're going to create a pipeline, then return it along with a config. If that pipeline's already around (which we know because pipelines have a unique label, and we can search for it), we'll return it and a config that can create the targets, but we will also delete any existing tickets in the first "Current Game Hits" stage, just so that each new game starts from a clean slate.
 
 ```
-var request = require("request");
+('@hubspot/api-client');
+const hubspotClient = new hubspot.Client({ apiKey: process.env.hubapikey});
 
 exports.main = ({ accountId, body, params }, sendResponse) => {
   console.log('Your HubSpot account ID: %i', accountId);
 
   // get or create a pipeline for this game
   var pipeline;
-  // first, get list of all ticket pipelines
-  var options = {
-    method: 'GET',
-    url: 'https://api.hubapi.com/crm/v3/pipelines/tickets',
-    qs: { archived: 'false', hapikey: process.env.hubapikey },
-    headers: { accept: 'application/json', 'content-type': 'application/json' }
-  };
+  // first, get list of all ticket pipelines from the HubSpot Pipelines API
+  hubspotClient.crm.pipelines.pipelinesApi.getAll('tickets', archived=false)
+    .then(results => {
+      pipeline = results.body.results.find(obj => obj.label === "Ticket Target Practice Game");
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+      if (typeof pipeline != "undefined") {
+        console.log("Pipeline ID found: " + pipeline.id);
+        removeOldTickets(pipeline, sendResponse);
+      } else {
+        console.log("We're gonna have to create it");
+        createPipeline(sendResponse);
+      }
 
-    body = JSON.parse(body);
-    pipeline = body.results.find(obj => obj.label === "Ticket Target Practice Game");
-
-    if (typeof pipeline != "undefined") {
-      console.log("Pipeline ID found: " + pipeline.id);
-      removeOldTickets(pipeline, sendResponse);
-    } else {
-      console.log("We're gonna have to create it");
-      createPipeline(sendResponse);
-    }
-  });
+    })
+    .catch(err => {
+      throw new Error(err);
+    })
 };
 ```
 It's pretty straightforward: if there's an existing pipeline called `Ticket Target Practice Game` that we find when looking through our pipelines, we're going to call `removeOldTickets()`. If not, we'll call `createPipeline()`. In both cases, we pass along `sendResponse` so that we can call that after we've done all the necessary networking.
@@ -452,16 +447,8 @@ It's pretty straightforward: if there's an existing pipeline called `Ticket Targ
 Next, we're going to add `createPipeline()` and `removeOldTickets()`, where we communicate with the HubSpot APIs.
 
 ```
-
-
-function removeOldTickets(pipeline, sendResponse)
-{
-  var options = {
-    method: 'POST',
-    url: 'https://api.hubapi.com/crm/v3/objects/tickets/search',
-    qs: {hapikey: process.env.hubapikey},
-    headers: {accept: 'application/json', 'content-type': 'application/json'},
-    body: {
+function removeOldTickets(pipeline, sendResponse) {
+  const publicObjectSearchRequest = {
       filterGroups: [
         {
           filters:
@@ -474,69 +461,59 @@ function removeOldTickets(pipeline, sendResponse)
       sorts: ['id'],
       properties: ['id'],
       limit: 100,
-    },
-    json: true
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
+  hubspotClient.crm.tickets.searchApi.doSearch(publicObjectSearchRequest)
+    .then(results => {
+      var ids = [];
 
-    console.log(body);
+      results.body.results.forEach((item, i) => {
+        ids.push({id: item.id});
+      });
 
-    var ids = [];
+      // now we archive the old tickets using the above ids
 
-    body.results.forEach((item, i) => {
-      ids.push({id: item.id});
-    });
-
-
-    var options = {
-      method: 'POST',
-      url: 'https://api.hubapi.com/crm/v3/objects/tickets/batch/archive',
-      qs: {hapikey: process.env.hubapikey},
-      headers: {accept: 'application/json', 'content-type': 'application/json'},
-      body: {inputs: ids},
-      json: true
-    };
-
-    request(options, function (error, response, body) {
-      if (error) throw new Error(error);
-      console.log(body);
-
-      sendFinalResponse(pipeline, sendResponse);
-    });
-
-  });
+      const batchInputSimplePublicObjectId = {
+        inputs: ids
+      }
+      hubspotClient.crm.tickets.batchApi.archive(batchInputSimplePublicObjectId)
+        .then(results => {
+          // return final response
+          sendFinalResponse(pipeline, sendResponse);
+        })
+        .catch(err => {
+          throw new Error(err);
+        })
+    })
+    .catch(err => {
+      throw new Error(err);
+    })
 }
 
 function createPipeline(sendResponse) {
-  var options = {
-    method: 'POST',
-    url: 'https://api.hubapi.com/crm/v3/pipelines/tickets',
-    qs: {hapikey: process.env.hubapikey},
-    headers: {accept: 'application/json', 'content-type': 'application/json'},
-    body: {
-      displayOrder: 0,
-      stages: [
-        {label: 'Current Game Hits', displayOrder: 0, metadata: {ticketState: 'OPEN'}},
-        {label: 'High Scores', displayOrder: 1, metadata: {ticketState: 'CLOSED'}}
-      ],
-      label: "Ticket Target Practice Game"
-    },
-    json: true
-  };
+  const pipelineInput = {
+    displayOrder: 0,
+    stages: [
+      {label: 'Current Game Hits', displayOrder: 0, metadata: {ticketState: 'OPEN'}},
+      {label: 'High Scores', displayOrder: 1, metadata: {ticketState: 'CLOSED'}}
+    ],
+    label: "Ticket Target Practice Game"
+  }
 
-  pipeline = request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
-    sendFinalResponse(body, sendResponse);
-  });
+  hubspotClient.crm.pipelines.pipelinesApi.create("tickets", pipelineInput)
+    .then(result => {
+      console.log(result.body);
+      sendFinalResponse(result.body, sendResponse);
+    })
+    .catch(err => {
+      throw new Error(err);
+    })
 }
 ```
-In `removeOldTickets()`, we craft a request to the `/tickets/search` endpoint that looks for tickets in our game-specific pipeline, in the first `Current Game Hits` stage, with a very optimistic `limit` of 100 items. Then, we pass those IDs to `/tickets/batch/archive` to delete them. Finally, we call `sendFinalResponse()` with the pipeline and the `sendResponse` callback.
 
-In `createPipeline()`, we actually create the pipeline we've heard so much about. It's pretty easy: we pass in stages, with their own order and label and `ticketState`, and we give the pipeline its own unique label. With the response, we pass our brand new pipeline object to `sendFinalResponse()` as well.
+In `removeOldTickets()`, we craft a request to the ticket API's `tickets.searchApi.doSearch` endpoint that looks for tickets in our game-specific pipeline, in the first `Current Game Hits` stage, with a very optimistic `limit` of 100 items. Then, we pass those IDs to the `tickets.batchApi.archive` endpoint to delete them. Finally, we call `sendFinalResponse()` with the pipeline and the `sendResponse` callback.
+
+In `createPipeline()`, we actually create the pipeline we've heard so much about. It's pretty easy: we pass in stages, with their own order and label and `ticketState`, and we give the pipeline its own unique label. Then we send that to the `pipelines.pipelinesApi.create` endpoint. With the response, we pass our brand new pipeline object to `sendFinalResponse()` as well.
 
 Now for the final piece: the `sendFinalResponse()` function, where we make use of `sendResponse()`:
 ```
@@ -555,6 +532,7 @@ function sendFinalResponse(pipeline, sendResponse) {
   });
 }
 ```
+
 Here, we craft the `config` object that'll allow the game to create the targets using `targets.createMultiple()`. We also pass along the pipeline object, so that we don't have to search for it every time we want to update the game state in the future.
 
 With that final piece, you should be able to load the game and play the first level. Your browser console should look something like this:
@@ -566,7 +544,8 @@ The `/update_game` function and endpoint is there to record the score and return
 
 At the top of `update-game.functions/update.js`, let's add this:
 ```
-var request = require("request");
+const hubspot = require('@hubspot/api-client');
+const hubspotClient = new hubspot.Client({ apiKey: process.env.hubapikey});
 
 exports.main = ({ accountId, body, params }, sendResponse) => {
   var pipeline = body.pipeline;
@@ -613,102 +592,100 @@ Let's make those `createTicket()` and `createHighScoreTicket()` functions now.
 ```
 function createTicket(score, level, config, pipeline, sendResponse) {
   // create tickets for the level's score
-  var options = {
-    method: 'POST',
-    url: 'https://api.hubapi.com/crm/v3/objects/tickets',
-    qs: {hapikey: process.env.hubapikey},
-    headers: {accept: 'application/json', 'content-type': 'application/json'},
-    body: {
-      properties: {
-        hs_pipeline: pipeline.id, hs_pipeline_stage: pipeline.stages[0].id, subject: score
-      }
-    },
-    json: true
-  };
+  const simplePublicObjectInput = {
+    properties: {
+      hs_pipeline: pipeline.id,
+      hs_pipeline_stage: pipeline.stages[0].id,
+      subject: score
+    }
+  }
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    sendResponse({
-      statusCode: 200,
-      body: {
-        message: 'Level ' + level,
-        level: level,
-        config: config,
-        game_over: false
-      },
+  hubspotClient.crm.tickets.basicApi.create(simplePublicObjectInput)
+    .then(result => {
+      console.log(result.body);
+
+      // looks good, now send new level
+      sendResponse({
+        statusCode: 200,
+        body: {
+          message: 'Level ' + level,
+          level: level,
+          config: config,
+          game_over: false
+        },
+      });
+    })
+    .catch(err => {
+      throw new Error(err);
     });
-  });
 }
+
 ```
 
-`createTicket()` is pretty straightforward! We make a call to `/objects/tickets`, and pass along the pipeline and stage details, as well as the score for the level. In handling the response, we call `sendResponse()` and send back the new level, config, and a message too.
+`createTicket()` is pretty straightforward! We craft an object to send to the `tickets.basicApi.create` endpoint, which includes the pipeline and stage details, as well as the score for the level. In handling the response, we call `sendResponse()` and send back the new level, config, and a message to the client.
 
 ```
 function createHighScoreTicket(name, pipeline, sendResponse)
 {
-  // first, search for the tickets for each level's score
-  var options = {
-    method: 'POST',
-    url: 'https://api.hubapi.com/crm/v3/objects/tickets/search',
-    qs: {hapikey: 'acac84e6-fb76-456f-9b35-668e8c77000c'},
-    headers: {accept: 'application/json', 'content-type': 'application/json'},
-    body: {
-      filterGroups: [
-        {
-          filters:
-          [
-            {value: pipeline.id, propertyName: 'hs_pipeline', operator: 'EQ'},
-            {value: pipeline.stages[0].id, propertyName: 'hs_pipeline_stage', operator: 'EQ'}
-          ]
-        }
-      ],
-      sorts: ['id'],
-      properties: ['id', 'subject', 'time_to_close'],
-      limit: 100,
-    },
-    json: true
+  // first, search for the tickets which we'll sum up
+  const publicObjectSearchRequest = {
+    filterGroups: [
+      {
+        filters:
+        [
+          {value: pipeline.id, propertyName: 'hs_pipeline', operator: 'EQ'},
+          {value: pipeline.stages[0].id, propertyName: 'hs_pipeline_stage', operator: 'EQ'}
+        ]
+      }
+    ],
+    sorts: ['id'],
+    properties: ['id', 'subject', 'time_to_close'],
+    limit: 100,
   };
 
-  request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-    console.log(body);
-
-    // sum up their scores
-    var score = body.results.reduce((a,b) => a + parseInt(b.properties.subject), 0);
-    console.log("High Score is: " + score);
-    // create a high score ticket in the second stage of the pipeline
-    var options = {
-      method: 'POST',
-      url: 'https://api.hubapi.com/crm/v3/objects/tickets',
-      qs: {hapikey: process.env.hubapikey},
-      headers: {accept: 'application/json', 'content-type': 'application/json'},
-      body: {
+  hubspotClient.crm.tickets.searchApi.doSearch(publicObjectSearchRequest)
+    .then(results => {
+      // sum up their scores
+      var score = results.body.results.reduce((a,b) => a + parseInt(b.properties.subject), 0);
+      console.log("Score is: " + score);
+      // create a new ticket in the second stage of the pipeline
+      const simplePublicObjectInput = {
         properties: {
-          hs_pipeline: pipeline.id, hs_pipeline_stage: pipeline.stages[1].id, subject: JSON.stringify({ name: name, score: score })
+          hs_pipeline: pipeline.id,
+          hs_pipeline_stage: pipeline.stages[1].id,
+          subject: JSON.stringify({ name: name, score: score })
         }
-      },
-      json: true
-    };
+      }
 
-    request(options, function (error, response, body) {
-      if (error) throw new Error(error);
+      hubspotClient.crm.tickets.basicApi.create(simplePublicObjectInput)
+        .then(result => {
+          console.log(result.body);
 
-      var subjectObject = JSON.parse(body.properties.subject);
+          const subjectObject = JSON.parse(result.body.properties.subject);
+          // return the score and call it game over
+          sendResponse({
+            statusCode: 200,
+            body: {
+              message: 'Game Over',
+              game_over: true,
+              score: subjectObject.score
+            }
+          });
 
-      // return the score
-      sendResponse({
-        statusCode: 200,
-        body: {
-          message: 'Game Over',
-          game_over: true,
-          score: subjectObject.score
-        }
-      });
+        })
+        .catch(err => {
+          throw new Error(err);
+        });
+    })
+    .catch(err => {
+      throw new Error(err);
     });
-  });
 }
 ```
-Here, we have to do a little more heavy lifting. First, we search for all of the tickets that tracked the scores in individual levels, which are all in the first stage of the pipeline. Then we sum them up, and create a new ticket, where we put the stringified JSON of the score and the user's name as the ticket's `subject` - which will come in handy in our next tutorial when we want to display the high scores. Finally, we send a response where we inform the user that it truly is game over, and show them their high score.
+
+In `createHighScoreTicket()`, we have to do a little more heavy lifting. First, we use `tickets.searchApi.doSearch` to search for all of the tickets that tracked the scores in individual levels, which are all in the first stage of the pipeline.
+
+Then we sum the scores up from all those tickets that represent the individual levels, and create a new ticket using `tickets.basicApi.create` in order to track where we put the stringified JSON of the score and the user's name as the ticket's `subject`. It's a little hacky, but it'll come in handy in our next tutorial when we want to display the high scores. Finally, we send a response where we inform the user that it truly is game over, and show them their high score.
 
 That's it! You should be able to keep playing until you miss all the targets in the level. At that point, you'll see this message:
 ![](/assets/images/gameover.png)

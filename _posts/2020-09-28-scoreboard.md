@@ -58,7 +58,7 @@ Now we can open up the resulting `scoreboard-page.html` file, and replace its co
 </html>
 ```
 {% endraw %}
-It's a pretty straightforward template. In the frontmatter, we set the Label to `Scoreboard template` so it's easy to search for. Then in the body, we include the module we're going to create containing our Vue app – the `cms_vue_boilerplate` module. The path is absolute – it begins from the home directory of our Design Manager.
+It's a pretty straightforward template. In the template-annotation, we set the `label` to `Scoreboard template` so it's easy to search for. Then in the body, we include the module we're going to create containing our Vue app – the `cms_vue_boilerplate` module. The path is absolute – it begins from the home directory of our Design Manager.
 
 ## Create a page from the template
 With the template created, we're now going to make a page from it like we did in our previous tutorials, which we'll use to develop the app and verify it works. In the top bar of HubSpot, go to `Marketing > Website > Website Pages`, and press `Create` in the top right corner, then select `Website page`.

@@ -411,6 +411,7 @@ header {
     float: left;
     margin-right: 2em;
     margin-top: 0em;
+    margin-bottom: 0.5em;
     padding: 0em;
   }
 
@@ -550,6 +551,9 @@ footer {
       padding: 0 0;
       margin: 0 0;
       line-height: 1.12em;
+      a {
+        color: $british-racing-green;
+      }
     }
 
     p {

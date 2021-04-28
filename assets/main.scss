@@ -8,7 +8,16 @@ $purp: #9012fe;
 $sunset-purp: rgba(144, 18, 254, 0.30980392156862746);
 $peachy-red: #e81c4f;
 $british-racing-green: #3F9A5A;
+
 $peachy-orange: #ffab68;
+
+$peachy-1: #FE987B;
+$peachy-2: #FDA679;
+$peachy-3: $british-racing-green; //#FEB57A;
+$peachy-4: #000000;
+$peachy-4-color: white;
+$peachy-5: #0300c7;
+$peachy-5-color: white;
 
 // Fonts
 $monospace: "Menlo", "Fira Mono", monospace;
@@ -747,6 +756,13 @@ footer {
 
 
 a.read-more {
+  padding: 5px;
+  background-color: white;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  
   &:before {
     content: "🍑";
     font-size: 20px;
@@ -754,7 +770,9 @@ a.read-more {
     text-decoration: none;
     padding-right: 5px;
   }
-  font-size: 20px;
+  &:hover {
+    background-color: $peachy-orange;
+  }
 }
 
 .animate {
@@ -862,43 +880,45 @@ html a.button {
     }
 
     &:nth-child(1) {
-      background: #FE987B;
+      background: $peachy-1;
 
       &:hover {
-        color: #FE987B;
+        color: $peachy-1;
         background: white;
       }
     }
     &:nth-child(2) {
-      background: #FDA679;
+      background: $peachy-2;
 
       &:hover {
-        color: #FDA679;
+        color: $peachy-2;
         background: white;
       }
     }
     &:nth-child(3) {
-      background: #FEB57A;
+      background: $peachy-3;
 
       &:hover {
-        color: #FEB57A;
+        color: $peachy-3;
         background: white;
       }
     }
     &:nth-child(4) {
-      background: #FEC57A;
+      background: $peachy-4;
+      color: $peachy-4-color;
 
       &:hover {
-        color: #FEC57A;
-        background: white;
+        color: $peachy-4;
+        background: $peachy-4-color;
       }
     }
     &:nth-child(5) {
-      background: #FDD378;
+      background: $peachy-5;
+      color: $peachy-5-color;
 
       &:hover {
-        color: #FDD378;
-        background: white;
+        color: $peachy-5;
+        background: $peachy-5-color;
       }
     }
 

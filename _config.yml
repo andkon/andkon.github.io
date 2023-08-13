@@ -29,7 +29,6 @@ collections:
 title: Andrew Konoff's Cool Web Site
 url: http://konoff.net
 description: Andrew Konoff's cool web site
-google_analytics: "UA-39284830-3"
 plugins:
   - jekyll-paginate
   - jekyll-feed

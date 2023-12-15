@@ -1,5 +1,5 @@
 ---
-title: "Cybertruck to the Future"
+title: "My first short"
 category: writing
 background_image: caleb-woods-485971-unsplash.jpg
 hidden: false
